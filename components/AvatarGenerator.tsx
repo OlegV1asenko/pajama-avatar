@@ -5,22 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import PhotoUpload from "./PhotoUpload";
 import LoadingAnimation from "./LoadingAnimation";
 import PajamaSwiper from "./PajamaSwiper";
+import { generateAvatarClientSide } from "@/lib/huggingface";
 import type { Gender } from "@/lib/promptBuilder";
 
 type Step = "upload" | "configure" | "loading" | "result" | "error";
 
 export default function AvatarGenerator() {
   const [step, setStep] = useState<Step>("upload");
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [gender, setGender] = useState<Gender>("person");
-  const [avatarBase64, setAvatarBase64] = useState<string | null>(null);
-  const [avatarMime, setAvatarMime] = useState<string>("image/jpeg");
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [retryCount, setRetryCount] = useState(0);
 
-  const handlePhotoSelected = useCallback((file: File, preview: string) => {
-    setPhotoFile(file);
+  const handlePhotoSelected = useCallback((_file: File, preview: string) => {
     setPhotoPreview(preview);
     setStep("configure");
   }, []);
@@ -29,40 +27,45 @@ export default function AvatarGenerator() {
     setStep("loading");
     setErrorMessage("");
 
+    const hfToken = process.env.NEXT_PUBLIC_HF_TOKEN;
+    if (!hfToken) {
+      setErrorMessage("HuggingFace токен не налаштовано");
+      setStep("error");
+      return;
+    }
+
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gender, pajamaColor: "light blue" }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        if (data.retryable && retryCount < 3) {
-          // HF model is loading (cold start) — retry after 25 seconds
-          setRetryCount((c) => c + 1);
-          await new Promise((r) => setTimeout(r, 25000));
-          return handleGenerate();
-        }
-        throw new Error(data.error || "Generation failed");
-      }
-
-      setAvatarBase64(data.imageBase64);
-      setAvatarMime(data.mimeType || "image/jpeg");
+      const result = await generateAvatarClientSide(
+        { gender, pajamaColor: "light blue" },
+        hfToken
+      );
+      setAvatarUrl(result.imageUrl);
       setStep("result");
+      setRetryCount(0);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Невідома помилка";
-      setErrorMessage(msg);
+
+      // Model cold-start — auto retry up to 3 times
+      if (msg === "MODEL_LOADING" && retryCount < 3) {
+        setRetryCount((c) => c + 1);
+        await new Promise((r) => setTimeout(r, 25000));
+        return handleGenerate();
+      }
+
+      setErrorMessage(
+        msg === "MODEL_LOADING"
+          ? "AI модель не відповідає. Спробуйте ще раз через хвилину."
+          : msg
+      );
       setStep("error");
     }
   };
 
   const handleReset = () => {
     setStep("upload");
-    setPhotoFile(null);
     setPhotoPreview(null);
-    setAvatarBase64(null);
+    if (avatarUrl) URL.revokeObjectURL(avatarUrl);
+    setAvatarUrl(null);
     setRetryCount(0);
     setErrorMessage("");
   };
@@ -90,7 +93,6 @@ export default function AvatarGenerator() {
           exit={{ opacity: 0, y: -20 }}
           className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto"
         >
-          {/* Photo preview thumbnail */}
           {photoPreview && (
             <div className="relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,9 +109,7 @@ export default function AvatarGenerator() {
 
           <div className="text-center">
             <h2 className="text-xl font-bold text-gray-800">Майже готово! 🎉</h2>
-            <p className="text-gray-500 text-sm mt-1">
-              Оберіть ваш аватар
-            </p>
+            <p className="text-gray-500 text-sm mt-1">Оберіть ваш аватар</p>
           </div>
 
           {/* Gender selector */}
@@ -119,7 +119,11 @@ export default function AvatarGenerator() {
             </p>
             <div className="flex gap-3 justify-center">
               {(["woman", "man", "person"] as Gender[]).map((g) => {
-                const labels = { woman: "Жінка 👩", man: "Чоловік 👨", person: "Не важливо 🧑" };
+                const labels = {
+                  woman: "Жінка 👩",
+                  man: "Чоловік 👨",
+                  person: "Не важливо 🧑",
+                };
                 return (
                   <button
                     key={g}
@@ -139,7 +143,6 @@ export default function AvatarGenerator() {
             </div>
           </div>
 
-          {/* Generate button */}
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -166,12 +169,17 @@ export default function AvatarGenerator() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
+          {retryCount > 0 && (
+            <p className="text-center text-violet-500 text-sm mb-2">
+              🔄 Спроба {retryCount}/3 — модель розігрівається...
+            </p>
+          )}
           <LoadingAnimation />
         </motion.div>
       )}
 
       {/* STEP 4: Result */}
-      {step === "result" && avatarBase64 && (
+      {step === "result" && avatarUrl && (
         <motion.div
           key="result"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -180,14 +188,14 @@ export default function AvatarGenerator() {
           className="w-full flex flex-col items-center gap-6"
         >
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800">Ваш аватар готовий! 🎉</h2>
+            <h2 className="text-2xl font-bold text-gray-800">
+              Ваш аватар готовий! 🎉
+            </h2>
             <p className="text-gray-500 text-sm mt-1">
               Свайпайте щоб змінити колір піжами
             </p>
           </div>
-
-          <PajamaSwiper imageBase64={avatarBase64} mimeType={avatarMime} />
-
+          <PajamaSwiper imageUrl={avatarUrl} />
           <button
             onClick={handleReset}
             className="text-gray-400 text-sm hover:text-gray-600 transition-colors"

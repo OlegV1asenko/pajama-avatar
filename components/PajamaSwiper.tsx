@@ -6,11 +6,10 @@ import PajamaCard from "./PajamaCard";
 import { PAJAMA_COLORS } from "@/lib/pajamaColors";
 
 interface PajamaSwiperProps {
-  imageBase64: string;
-  mimeType: string;
+  imageUrl: string;
 }
 
-export default function PajamaSwiper({ imageBase64, mimeType }: PajamaSwiperProps) {
+export default function PajamaSwiper({ imageUrl }: PajamaSwiperProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const constraintsRef = useRef(null);
@@ -58,8 +57,7 @@ export default function PajamaSwiper({ imageBase64, mimeType }: PajamaSwiperProp
           >
             <PajamaCard
               color={current}
-              imageBase64={imageBase64}
-              mimeType={mimeType}
+              imageUrl={imageUrl}
               isActive={true}
               onSelect={() => {}}
             />

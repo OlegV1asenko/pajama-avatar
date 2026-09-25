@@ -5,20 +5,17 @@ import type { PajamaColor } from "@/lib/pajamaColors";
 
 interface PajamaCardProps {
   color: PajamaColor;
-  imageBase64: string;
-  mimeType: string;
+  imageUrl: string;
   isActive: boolean;
   onSelect: () => void;
 }
 
 export default function PajamaCard({
   color,
-  imageBase64,
-  mimeType,
+  imageUrl,
   isActive,
   onSelect,
 }: PajamaCardProps) {
-  const imageSrc = `data:${mimeType};base64,${imageBase64}`;
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -36,7 +33,7 @@ export default function PajamaCard({
       link.download = `pajama-avatar-${color.nameUk.toLowerCase()}.png`;
       link.click();
     };
-    img.src = imageSrc;
+    img.src = imageUrl;
   };
 
   return (
@@ -56,7 +53,7 @@ export default function PajamaCard({
       <div className="w-full aspect-[2/3] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={imageSrc}
+          src={imageUrl}
           alt={`Avatar in ${color.nameUk} pajama`}
           className="w-full h-full object-cover transition-all duration-500"
           style={{ filter: color.filter }}

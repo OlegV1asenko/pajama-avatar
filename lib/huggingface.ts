@@ -8,15 +8,11 @@ export interface GenerateAvatarOptions {
   pajamaColor?: string;
 }
 
-export interface GenerateAvatarResult {
-  imageBase64: string;
-  mimeType: string;
-}
-
-export async function generateAvatarWithHF(
+// Called directly from the browser (client-side) to avoid Vercel Hobby outbound restrictions
+export async function generateAvatarClientSide(
   options: GenerateAvatarOptions,
   hfToken: string
-): Promise<GenerateAvatarResult> {
+): Promise<{ imageUrl: string }> {
   const prompt = buildAvatarPrompt({
     gender: options.gender,
     pajamaColor: options.pajamaColor ?? "light blue",
@@ -42,17 +38,18 @@ export async function generateAvatarWithHF(
     }),
   });
 
+  if (response.status === 503) {
+    // Model is loading (cold start)
+    throw new Error("MODEL_LOADING");
+  }
+
   if (!response.ok) {
     const err = await response.text();
-    throw new Error(`Hugging Face API error: ${response.status} — ${err}`);
+    throw new Error(`HuggingFace API error ${response.status}: ${err}`);
   }
 
   const blob = await response.blob();
-  const arrayBuffer = await blob.arrayBuffer();
-  const base64 = Buffer.from(arrayBuffer).toString("base64");
+  const imageUrl = URL.createObjectURL(blob);
 
-  return {
-    imageBase64: base64,
-    mimeType: blob.type || "image/jpeg",
-  };
+  return { imageUrl };
 }
