@@ -28,11 +28,6 @@ export default function AvatarGenerator() {
     setErrorMessage("");
 
     const hfToken = process.env.NEXT_PUBLIC_HF_TOKEN;
-    if (!hfToken) {
-      setErrorMessage("HuggingFace токен не налаштовано");
-      setStep("error");
-      return;
-    }
 
     try {
       const result = await generateAvatarClientSide(
