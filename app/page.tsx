@@ -10,6 +10,8 @@ import {
   Users,
   HelpCircle,
   ExternalLink,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'
 import { PajamaShopModal, ShopItem } from '@/components/PajamaShopModal'
 import { PajamaRulesModal } from '@/components/PajamaRulesModal'
@@ -105,6 +107,92 @@ const RAFFLE_PRIZES = [
     icon: '⭐',
   },
 ]
+
+const HOUSE_SLIDES = [
+  {
+    src: '/house/house-slide-1.jpg',
+    title: 'Фасад майбутнього Дому Рональда МакДональда',
+    caption: '5 поверхів та 50 затишних спалень на базі НДСЛ «Охматдит»',
+  },
+  {
+    src: '/house/house-slide-2.jpg',
+    title: 'Архітектурний стиль та головний вхід',
+    caption: 'Сучасний простір тепла, безпеки та психологічної підтримки',
+  },
+  {
+    src: '/house/house-slide-3.jpg',
+    title: 'Панорама території та вхідної групи',
+    caption: 'Місце, де сім’ї з важкохворими дітьми будуть поруч під час лікування',
+  },
+]
+
+function HouseImageSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? HOUSE_SLIDES.length - 1 : prev - 1))
+  }
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === HOUSE_SLIDES.length - 1 ? 0 : prev + 1))
+  }
+
+  return (
+    <div className="relative group w-full overflow-hidden rounded-3xl shadow-xl border border-amber-900/10 bg-slate-900 aspect-4/3 sm:aspect-16/11">
+      {HOUSE_SLIDES.map((slide, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+            idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+          }`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={slide.src}
+            alt={slide.title}
+            className="w-full h-full object-cover select-none"
+          />
+          {/* Vignette with caption */}
+          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+            <p className="text-xs sm:text-sm font-black drop-shadow-sm">{slide.title}</p>
+            <p className="text-[11px] sm:text-xs text-white/90 drop-shadow-sm">{slide.caption}</p>
+          </div>
+        </div>
+      ))}
+
+      {/* Nav Controls */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
+        aria-label="Попереднє фото"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
+        aria-label="Наступне фото"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* Slide Dots Indicator */}
+      <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-xs">
+        {HOUSE_SLIDES.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            className={`h-2 rounded-full transition-all cursor-pointer ${
+              idx === currentSlide ? 'bg-white w-4' : 'bg-white/50 hover:bg-white/80 w-2'
+            }`}
+            aria-label={`Слайд ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function PajamaLandingPage() {
   const { totalCount, totalAmount, openCart, toastMessage, addToCart } = useCart()
@@ -521,36 +609,51 @@ export default function PajamaLandingPage() {
         </div>
       </section>
 
-      {/* 7. ABOUT THE HOUSE (PAGE 2 FROM PDF) */}
-      <section id="about-house" className="py-16 sm:py-24 bg-white border-t border-amber-900/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center sm:text-left">
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            Разом ми будуємо Дім для безкоштовного проживання сімей з важкохворими дітьми!
-          </h2>
+      {/* 7. ABOUT THE HOUSE (PAGE 2 FROM PDF) — 2-COLUMN LAYOUT WITH HOUSE SLIDER */}
+      <section id="about-house" className="py-16 sm:py-24 bg-[#FFFDE9] border-t border-amber-900/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column: Interactive Image Slider of the House */}
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <HouseImageSlider />
+            </div>
 
-          <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed">
-            <p>
-              Це буде будинок на <strong>5 поверхів і 50 затишних спалень</strong> на території національної дитячої лікарні «Охматдит», куди привозять дітей з найскладнішими діагнозами з усіх куточків нашої країни.
-            </p>
-            <p>
-              Місце, де родина зможе залишатися разом тоді, коли малеча проходить найскладніше випробування у своєму житті.
-            </p>
-            <p className="text-slate-800 font-medium leading-relaxed">
-              Де мама зможе перепочити після безсонної ночі, тато — випити чашку чаю і набратися сил, бабуся — приготувати улюблену страву для родини, дитина після процедур — провести час у затишку поруч із найріднішими. Щоб відчути себе ніби вдома.
-            </p>
+            {/* Right Column: Shifted Text Block */}
+            <div className="lg:col-span-6 order-1 lg:order-2 space-y-6 text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D0C9FF]/60 border border-[#D0C9FF] text-indigo-950 text-xs font-black uppercase tracking-wider shadow-2xs">
+                <Home className="w-3.5 h-3.5 text-[#E31837]" />
+                <span>Будівництво Дому</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+                Разом ми будуємо Дім для безкоштовного проживання сімей з важкохворими дітьми!
+              </h2>
+
+              <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
+                <p>
+                  Це буде будинок на <strong>5 поверхів і 50 затишних спалень</strong> на території національної дитячої лікарні «Охматдит», куди привозять дітей з найскладнішими діагнозами з усіх куточків нашої країни.
+                </p>
+                <p>
+                  Місце, де родина зможе залишатися разом тоді, коли малеча проходить найскладніше випробування у своєму житті.
+                </p>
+                <p className="text-slate-800 font-medium leading-relaxed">
+                  Де мама зможе перепочити після безсонної ночі, тато — випити чашку чаю і набратися сил, бабуся — приготувати улюблену страву для родини, дитина після процедур — провести час у затишку поруч із найріднішими. Щоб відчути себе ніби вдома.
+                </p>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  onClick={handleOpenDonate}
+                  className="py-4 px-8 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-md active:scale-98 transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  <Heart className="w-5 h-5 fill-white" />
+                  <span>Зробити внесок</span>
+                </button>
+              </div>
+            </div>
+
           </div>
-
-          <div className="pt-2">
-            <button
-              onClick={handleOpenDonate}
-              className="py-4 px-8 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-md active:scale-98 transition-all flex items-center gap-2 cursor-pointer mx-auto sm:mx-0"
-            >
-              <Heart className="w-5 h-5 fill-white" />
-              <span>Зробити внесок</span>
-            </button>
-          </div>
-
         </div>
       </section>
 
