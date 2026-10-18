@@ -19,20 +19,28 @@ import { PajamaShopModal, ShopItem } from '@/components/PajamaShopModal'
 import { PajamaRulesModal } from '@/components/PajamaRulesModal'
 import { PajamaDonateModal } from '@/components/PajamaDonateModal'
 import { PajamaAvatarSection } from '@/components/PajamaAvatarSection'
+import { useCart } from '@/lib/CartContext'
+import { CartDrawer } from '@/components/CartDrawer'
+import { AddToCartModal } from '@/components/AddToCartModal'
 
 const MERCH_ITEMS: ShopItem[] = [
   {
-    id: 'shopper',
-    name: 'Шопер',
-    description: 'Місткий бавовняний шопер з фірмовим візерунком та червоними ручками. 300 ₴ без підкладки або 400 ₴ зі щільною червоною підкладкою.',
+    id: 'shopper-300',
+    name: 'Шопер без підкладки',
+    description: 'Місткий бавовняний шопер з фірмовим візерунком та червоними ручками. Базова версія без підкладки.',
     price: 300,
     category: 'Сумки & Шопери',
     imageSrc: '/merch/shopper.png',
-    variants: [
-      { name: 'Без підкладки', price: 300 },
-      { name: 'З червоною підкладкою', price: 400 },
-    ],
     colorTheme: '#FFF9EB',
+  },
+  {
+    id: 'shopper-400',
+    name: 'Шопер з червоною підкладкою',
+    description: 'Місткий бавовняний шопер зі щільною червоною підкладкою та червоними ручками.',
+    price: 400,
+    category: 'Сумки & Шопери',
+    imageSrc: '/merch/shopper.png',
+    colorTheme: '#FFF5F5',
   },
   {
     id: 'cup',
@@ -103,6 +111,8 @@ const RAFFLE_PRIZES = [
 ]
 
 export default function PajamaLandingPage() {
+  const { totalCount, totalAmount, openCart, toastMessage, addToCart } = useCart()
+  const [selectedAddToCartItem, setSelectedAddToCartItem] = useState<ShopItem | null>(null)
   const [selectedShopItem, setSelectedShopItem] = useState<ShopItem | null>(null)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
   const [isDonateOpen, setIsDonateOpen] = useState<boolean>(false)
@@ -143,8 +153,22 @@ export default function PajamaLandingPage() {
               <a href="#about-house" className="hover:text-slate-900 transition-colors">Про Дім</a>
             </nav>
 
-            {/* Right Action: Red Monobank Donate Button */}
-            <div className="flex items-center gap-2">
+            {/* Header Right Actions: Cart + Monobank Donate */}
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              <button
+                onClick={openCart}
+                className="relative flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black bg-white hover:bg-amber-50 text-slate-900 border border-amber-300 shadow-2xs active:scale-95 transition-all cursor-pointer"
+                aria-label="Відкрити кошик"
+              >
+                <ShoppingBag className="w-4 h-4 text-amber-900" />
+                <span className="hidden sm:inline">Кошик</span>
+                {totalCount > 0 && (
+                  <span className="bg-[#E31837] text-white text-[10.5px] font-black px-1.5 py-0.2 rounded-full min-w-[20px] text-center shadow-xs">
+                    {totalCount}
+                  </span>
+                )}
+              </button>
+
               <button
                 onClick={handleOpenDonate}
                 className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black bg-[#E31837] hover:bg-[#C9132D] text-white shadow-sm active:scale-95 transition-all cursor-pointer"
@@ -376,8 +400,8 @@ export default function PajamaLandingPage() {
             </p>
           </div>
 
-          {/* Merch Product Grid — 5 Real Items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          {/* Merch Product Grid — 6 Real Items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-4.5">
             {MERCH_ITEMS.map((item) => (
               <div
                 key={item.id}
@@ -415,11 +439,17 @@ export default function PajamaLandingPage() {
                   </div>
 
                   <button
-                    onClick={() => setSelectedShopItem(item)}
-                    className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1 shrink-0"
+                    onClick={() => {
+                      if ((item.variants && item.variants.length > 0) || (item.sizes && item.sizes.length > 0)) {
+                        setSelectedAddToCartItem(item)
+                      } else {
+                        addToCart(item, null, undefined, 1)
+                      }
+                    }}
+                    className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1.5 shrink-0"
                   >
                     <ShoppingBag className="w-3.5 h-3.5" />
-                    <span>Замовити</span>
+                    <span>В кошик</span>
                   </button>
                 </div>
               </div>
@@ -670,6 +700,41 @@ export default function PajamaLandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* FLOATING CART BUTTON */}
+      {totalCount > 0 && (
+        <div className="fixed bottom-6 right-6 z-40">
+          <button
+            onClick={openCart}
+            className="flex items-center gap-2.5 py-3.5 px-5 rounded-full bg-slate-900 hover:bg-[#E31837] text-white font-black text-xs sm:text-sm shadow-2xl shadow-slate-950/40 border-2 border-white cursor-pointer transition-all active:scale-95 hover:scale-105"
+          >
+            <ShoppingBag className="w-4 h-4 text-[#FFBC0D]" />
+            <span>Кошик ({totalCount})</span>
+            <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+              {totalAmount} ₴
+            </span>
+          </button>
+        </div>
+      )}
+
+      {/* QUICK TOAST NOTIFICATION */}
+      {toastMessage && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+          <div className="bg-slate-900 text-white font-black text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-2 animate-bounce">
+            <span>{toastMessage}</span>
+          </div>
+        </div>
+      )}
+
+      {/* CART DRAWER */}
+      <CartDrawer />
+
+      {/* ADD TO CART OPTION PICKER */}
+      <AddToCartModal
+        item={selectedAddToCartItem}
+        isOpen={Boolean(selectedAddToCartItem)}
+        onClose={() => setSelectedAddToCartItem(null)}
+      />
 
       {/* MODALS */}
       <PajamaShopModal
