@@ -182,7 +182,7 @@ export default function PajamaLandingPage() {
 
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
-                Одягаємо піжаму <span className="text-[#E31837] underline decoration-amber-400 decoration-wavy decoration-2">не для сну</span>, а для підтримки!
+                Одягаємо піжаму <span className="text-[#E31837]">не для сну</span>, а для підтримки!
               </h1>
 
               {/* Emotional Paragraph (from PDF page 1) */}
@@ -423,61 +423,83 @@ export default function PajamaLandingPage() {
             {MERCH_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#FAF6EB] rounded-3xl p-4 sm:p-5 border border-amber-200/80 hover:border-amber-400 hover:shadow-xl transition-all flex flex-col justify-between group bg-white/70 hover:bg-white"
+                className="relative group h-full"
               >
-                <div>
-                  {/* Product Visual Container with Real Cutout Image */}
-                  <div 
-                    className="w-full aspect-square rounded-2xl p-3 flex items-center justify-center relative overflow-hidden mb-3.5 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
-                    style={{ backgroundColor: item.colorTheme }}
-                  >
-                    {item.badge && (
-                      <span className="absolute top-2.5 left-2.5 text-[9px] font-black uppercase tracking-wider bg-white/95 py-0.5 px-2.5 rounded-full shadow-2xs text-slate-800 z-10">
-                        {item.badge}
-                      </span>
-                    )}
-
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.imageSrc}
-                      alt={item.name}
-                      className="w-full h-full object-contain drop-shadow-sm group-hover:scale-108 transition-transform duration-300"
-                    />
+                {/* 1. Ghost Card: Preserves rock-solid grid dimensions and identical cell heights */}
+                <div 
+                  className="invisible pointer-events-none p-4 sm:p-5 border border-transparent flex flex-col justify-between h-full select-none"
+                  aria-hidden="true"
+                >
+                  <div>
+                    <div className="w-full aspect-square rounded-2xl mb-3.5" />
+                    <span className="text-[9px] uppercase tracking-wider">{item.category}</span>
+                    <h3 className="text-sm sm:text-base font-black leading-snug mt-0.5 mb-1">{item.name}</h3>
+                    <p className="text-xs line-clamp-2 leading-relaxed">{item.description}</p>
                   </div>
-
-                  {/* Title & Desc */}
-                  <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">
-                    {item.category}
-                  </span>
-                  <h3 className="text-sm sm:text-base font-black text-slate-900 leading-snug mt-0.5 mb-1">
-                    {item.name}
-                  </h3>
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="pt-3.5 mt-3.5 flex items-center justify-between">
+                    <span className="text-base sm:text-lg font-black">{item.price} ₴</span>
+                    <div className="py-2 px-3 text-xs">Замовити</div>
+                  </div>
                 </div>
 
-                {/* Price & Action */}
-                <div className="pt-3.5 border-t border-amber-200/60 mt-3.5 flex items-center justify-between gap-1.5">
+                {/* 2. Interactive Floating Card: Expands smoothly on hover to show full description */}
+                <div className="absolute inset-x-0 top-0 min-h-full rounded-3xl p-4 sm:p-5 border border-amber-200/80 group-hover:border-amber-400 bg-white/80 group-hover:bg-white shadow-2xs group-hover:shadow-2xl group-hover:shadow-amber-950/15 transition-all duration-300 ease-out group-hover:scale-[1.03] group-hover:-translate-y-1.5 z-10 group-hover:z-40 flex flex-col justify-between">
                   <div>
-                    <span className="text-base sm:text-lg font-black text-[#E31837] whitespace-nowrap">
-                      {item.variants
-                        ? `${item.variants[0].price}–${item.variants[item.variants.length - 1].price} ₴`
-                        : `${item.price} ₴`
-                      }
+                    {/* Product Visual Container with Real Cutout Image */}
+                    <div 
+                      className="w-full aspect-square rounded-2xl p-3 flex items-center justify-center relative overflow-hidden mb-3.5 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
+                      style={{ backgroundColor: item.colorTheme }}
+                    >
+                      {item.badge && (
+                        <span className="absolute top-2.5 left-2.5 text-[9px] font-black uppercase tracking-wider bg-white/95 py-0.5 px-2.5 rounded-full shadow-2xs text-slate-800 z-10">
+                          {item.badge}
+                        </span>
+                      )}
+
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.imageSrc}
+                        alt={item.name}
+                        className="w-full h-full object-contain drop-shadow-sm group-hover:scale-108 transition-transform duration-300"
+                      />
+                    </div>
+
+                    {/* Title & Category */}
+                    <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">
+                      {item.category}
                     </span>
-                    <span className="block text-[8.5px] font-bold text-slate-400">
-                      100% на Дім
-                    </span>
+                    <h3 className="text-sm sm:text-base font-black text-slate-900 leading-snug mt-0.5 mb-1">
+                      {item.name}
+                    </h3>
+
+                    {/* Description: 2 lines by default, unfolds fully on hover */}
+                    <p className="text-xs text-slate-600 line-clamp-2 group-hover:line-clamp-none leading-relaxed transition-all duration-300">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <button
-                    onClick={() => setSelectedShopItem(item)}
-                    className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1 shrink-0"
-                  >
-                    <ShoppingBag className="w-3.5 h-3.5" />
-                    <span>Замовити</span>
-                  </button>
+                  {/* Price & Action */}
+                  <div className="pt-3.5 border-t border-amber-200/60 mt-3.5 flex items-center justify-between gap-1.5">
+                    <div>
+                      <span className="text-base sm:text-lg font-black text-[#E31837] whitespace-nowrap">
+                        {item.variants
+                          ? `${item.variants[0].price}–${item.variants[item.variants.length - 1].price} ₴`
+                          : `${item.price} ₴`
+                        }
+                      </span>
+                      <span className="block text-[8.5px] font-bold text-slate-400">
+                        100% на Дім
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedShopItem(item)}
+                      className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1 shrink-0"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      <span>Замовити</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
