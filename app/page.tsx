@@ -8,12 +8,8 @@ import {
   Gift,
   Home,
   Users,
-  ArrowRight,
-  Calendar,
-  CheckCircle,
   HelpCircle,
   ExternalLink,
-  ShieldCheck,
 } from 'lucide-react'
 import { PajamaShopModal, ShopItem } from '@/components/PajamaShopModal'
 import { PajamaRulesModal } from '@/components/PajamaRulesModal'
@@ -224,48 +220,6 @@ export default function PajamaLandingPage() {
               <ShoppingBag className="w-5 h-5 shrink-0" />
               <span className="whitespace-nowrap">Благодійний магазин</span>
             </a>
-          </div>
-
-          {/* Trust proofs bar */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-slate-600 font-bold">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-[#70B83A]" />
-              Донат від 50 ₴ бере участь у розіграші
-            </span>
-            <span className="hidden sm:inline w-1 h-1 rounded-full bg-slate-300" />
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-amber-600" />
-              Офіційна ініціатива РМХК Україна
-            </span>
-            <span className="hidden sm:inline w-1 h-1 rounded-full bg-slate-300" />
-            <span className="flex items-center gap-1.5">
-              <Home className="w-4 h-4 text-[#E31837]" />
-              100% на будівництво Дому для сімей
-            </span>
-          </div>
-
-          {/* The Emotional Manifest from Brief */}
-          <div className="mt-14 sm:mt-18 pt-12 border-t border-amber-900/10 text-center max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFBC0D] text-slate-950 text-xs font-black uppercase tracking-wider shadow-2xs">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>13 листопада — Всеукраїнський День Піжам</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
-              Одягаємо піжаму <span className="text-[#E31837]">не для сну</span>, а для підтримки!
-            </h2>
-
-            <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal max-w-3xl mx-auto">
-              <p>
-                Коли діти хворіють у лікарнях, вони весь день проводять у піжамі, яка стає для них частинкою дому в лікарняних стінах.
-              </p>
-              <p>
-                Саме тому раз на рік ми одягаємо піжаму не для сну, а для підтримки. Щоб нагадати дітям: за стінами лікарні є тисячі людей, які співпереживають, підтримують і вірять у їхню силу.
-              </p>
-              <p className="font-bold text-slate-900">
-                А ще – побудувати Дім на території національної дитячої лікарні, де сім’ї мешкатимуть безкоштовно. Долучайся звідти, де ти є!
-              </p>
-            </div>
           </div>
 
         </div>
