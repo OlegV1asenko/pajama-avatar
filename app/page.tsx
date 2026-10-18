@@ -23,7 +23,7 @@ import { PajamaAvatarSection } from '@/components/PajamaAvatarSection'
 const MERCH_ITEMS: ShopItem[] = [
   {
     id: 'shopper',
-    name: 'Шопер фірмовий «Дім Надії»',
+    name: 'Шопер',
     description: 'Місткий бавовняний шопер з фірмовим візерунком та червоними ручками. 300 ₴ без підкладки або 400 ₴ зі щільною червоною підкладкою.',
     price: 300,
     category: 'Сумки & Шопери',
@@ -32,50 +32,45 @@ const MERCH_ITEMS: ShopItem[] = [
       { name: 'Без підкладки', price: 300 },
       { name: 'З червоною підкладкою', price: 400 },
     ],
-    badge: 'Бестселер',
     colorTheme: '#FFF9EB',
   },
   {
     id: 'cup',
-    name: 'Керамічна чашка «Дім Рональда»',
+    name: 'Керамічна чашка',
     description: 'Затишна керамічна чашка для чаю або какао з офіційним логотипом Фундації. Різні кольори в асортименті.',
     price: 500,
     category: 'Посуд',
     imageSrc: '/merch/cup.png',
     sizes: ['Жовта класична', 'Помаранчева', 'Кольоровий мікс'],
-    badge: 'Затишок',
     colorTheme: '#FFF3E0',
   },
   {
     id: 'pillow',
-    name: 'Подушка декоративна (45×45 см)',
+    name: 'Подушка декоративна',
     description: 'М’яка інтер’єрна подушка 45*45 см з фірмовим патерном теплих кольорових будиночків. Створює домашній затишок.',
     price: 400,
     category: 'Дім & Інтер’єр',
     imageSrc: '/merch/pillow.png',
     sizes: ['45×45 см'],
-    badge: 'Дім і тепло',
     colorTheme: '#EBF7FF',
   },
   {
     id: 'socks',
-    name: 'Шкарпетки благодійні «Символ підтримки»',
+    name: 'Шкарпетки',
     description: 'Яскраві теплі шкарпетки з фірмовою листівкою РМХК. Універсальний розмір, що підходить кожному.',
     price: 150,
     category: 'Одяг',
     imageSrc: '/merch/socks.png',
     sizes: ['Універсальний (One size)'],
-    badge: 'Символ акції',
     colorTheme: '#FFF0F0',
   },
   {
     id: 'toy',
-    name: 'Новорічна прикраса «Будиночок Надії»',
+    name: 'Новорічна прикраса',
     description: 'Авторська керамічна прикраса ручної роботи від Samsara Decor з джутовою мотузкою та подарунковим пакуванням.',
     price: 150,
     category: 'Новий Рік',
     imageSrc: '/merch/toy.png',
-    badge: 'Handmade',
     colorTheme: '#F6F0FF',
   },
 ]
@@ -432,7 +427,6 @@ export default function PajamaLandingPage() {
                 >
                   <div>
                     <div className="w-full aspect-square rounded-2xl mb-3.5" />
-                    <span className="text-[9px] uppercase tracking-wider">{item.category}</span>
                     <h3 className="text-sm sm:text-base font-black leading-snug mt-0.5 mb-1">{item.name}</h3>
                     <p className="text-xs line-clamp-2 leading-relaxed">{item.description}</p>
                   </div>
@@ -450,12 +444,6 @@ export default function PajamaLandingPage() {
                       className="w-full aspect-square rounded-2xl p-3 flex items-center justify-center relative overflow-hidden mb-3.5 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
                       style={{ backgroundColor: item.colorTheme }}
                     >
-                      {item.badge && (
-                        <span className="absolute top-2.5 left-2.5 text-[9px] font-black uppercase tracking-wider bg-white/95 py-0.5 px-2.5 rounded-full shadow-2xs text-slate-800 z-10">
-                          {item.badge}
-                        </span>
-                      )}
-
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={item.imageSrc}
@@ -464,10 +452,7 @@ export default function PajamaLandingPage() {
                       />
                     </div>
 
-                    {/* Title & Category */}
-                    <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">
-                      {item.category}
-                    </span>
+                    {/* Clean Title */}
                     <h3 className="text-sm sm:text-base font-black text-slate-900 leading-snug mt-0.5 mb-1">
                       {item.name}
                     </h3>
@@ -486,9 +471,6 @@ export default function PajamaLandingPage() {
                           ? `${item.variants[0].price}–${item.variants[item.variants.length - 1].price} ₴`
                           : `${item.price} ₴`
                         }
-                      </span>
-                      <span className="block text-[8.5px] font-bold text-slate-400">
-                        100% на Дім
                       </span>
                     </div>
 
