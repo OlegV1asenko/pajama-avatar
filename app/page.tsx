@@ -182,20 +182,20 @@ export default function PajamaLandingPage() {
         </div>
       </header>
 
-      {/* 2. HERO: OFFICIAL KEY VISUAL BANNER CENTERPIECE */}
-      <section className="relative overflow-hidden pt-6 pb-14 sm:pt-10 sm:pb-20">
+      {/* 2. HERO: OFFICIAL KEY VISUAL BANNER INTEGRATED */}
+      <section className="relative overflow-hidden pt-3 sm:pt-6 pb-12 sm:pb-16 bg-gradient-to-b from-[#D0C9FF]/40 via-[#FAF6EB] to-[#FAF6EB]">
         {/* Ambient periwinkle & warm glow matching Key Visual background */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-r from-[#DDE2F8]/70 via-amber-100/40 to-[#E0E7FF]/60 blur-3xl -z-10 pointer-events-none rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[550px] bg-gradient-to-r from-[#D0C9FF]/50 via-amber-100/30 to-[#D0C9FF]/50 blur-3xl -z-10 pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1540px] mx-auto px-2 sm:px-4 lg:px-6">
           
-          {/* The Official Key Visual Banner Frame */}
-          <div className="relative rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 sm:border-[6px] border-white bg-[#FAF7EE] group transition-transform duration-500 hover:scale-[1.006]">
+          {/* Seamless Built-in Key Visual Banner */}
+          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-[#D0C9FF]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hero-banner.png"
-              alt="13 листопада — День піжам. Покажи свою піжаму світу! Задонать на дім для хворих дітей і виграй подарунки. Долучайся звідти, де ти є. Дім Рональда МакДональда в Україні"
-              className="w-full h-auto object-cover select-none"
+              alt="13 листопада — Всеукраїнський День Піжам. Покажи свою піжаму світу! Задонать на дім для хворих дітей і виграй подарунки. Долучайся звідти, де ти є. Дім Рональда МакДональда в Україні"
+              className="w-full h-auto object-contain mx-auto block select-none"
             />
           </div>
 
@@ -206,7 +206,7 @@ export default function PajamaLandingPage() {
               className="flex-1 py-4 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <Heart className="w-5 h-5 fill-white" />
-              <span>Задонатити на монобанку</span>
+              <span>Зробити внесок</span>
             </button>
 
             <a
@@ -214,7 +214,7 @@ export default function PajamaLandingPage() {
               className="flex-1 py-4 px-6 rounded-2xl bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-lg shadow-green-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <Sparkles className="w-5 h-5" />
-              <span>Створити онлайн-піжаму</span>
+              <span>Створи піжаму</span>
             </a>
 
             <a
@@ -222,7 +222,7 @@ export default function PajamaLandingPage() {
               className="flex-1 py-4 px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <ShoppingBag className="w-5 h-5" />
-              <span>Благодійний мерч</span>
+              <span>Благодійний магазин</span>
             </a>
           </div>
 
@@ -275,16 +275,10 @@ export default function PajamaLandingPage() {
       <section id="how-to-join" className="py-16 sm:py-24 bg-white border-y border-amber-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span className="inline-block text-xs font-black uppercase tracking-wider text-slate-950 bg-[#FFBC0D] px-4 py-1.5 rounded-full shadow-2xs">
-              Проста інструкція
-            </span>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900">
               Як долучитися
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
-              Усього 3 прості дії, які зігріють тисячі дитячих сердець
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -387,30 +381,26 @@ export default function PajamaLandingPage() {
       <section id="merch-shop" className="py-16 sm:py-24 bg-white border-y border-amber-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFBC0D] text-slate-950 text-xs font-black uppercase tracking-wider shadow-2xs">
-              <ShoppingBag className="w-3.5 h-3.5" />
-              <span>Офіційний мерч-шоп акції</span>
-            </div>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900">
-              Благодійний магазин тепла
+              Благодійний магазин
             </h2>
             <p className="text-slate-600 text-base sm:text-lg">
-              Купуючи фірмовий мерч, ви даруєте тепло дітям: <strong>100% прибутку від кожної речі</strong> спрямовується на будівництво Дому Рональда МакДональда!
+              <strong>100% прибутку від кожної речі</strong> спрямовується на будівництво Дому Рональда МакДональда!
             </p>
           </div>
 
-          {/* Merch Product Grid — 6 Real Items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-4.5">
+          {/* Merch Product Grid — 3 items per row on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {MERCH_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="bg-white/80 hover:bg-white rounded-3xl p-4 sm:p-5 border border-amber-200/80 hover:border-amber-400 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
+                className="bg-white/80 hover:bg-white rounded-3xl p-5 sm:p-6 border border-amber-200/80 hover:border-amber-400 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
               >
                 <div>
                   {/* Product Visual Container with Real Cutout Image */}
                   <div 
-                    className="w-full aspect-square rounded-2xl p-3 flex items-center justify-center relative overflow-hidden mb-3.5 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
+                    className="w-full aspect-square rounded-2xl p-4 sm:p-6 flex items-center justify-center relative overflow-hidden mb-4 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
                     style={{ backgroundColor: item.colorTheme }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -422,15 +412,15 @@ export default function PajamaLandingPage() {
                   </div>
 
                   {/* Clean Title */}
-                  <h3 className="text-sm sm:text-base font-black text-slate-900 leading-snug">
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                     {item.name}
                   </h3>
                 </div>
 
                 {/* Price & Action */}
-                <div className="pt-3.5 border-t border-amber-200/60 mt-3.5 flex items-center justify-between gap-1.5">
+                <div className="pt-4 border-t border-amber-200/60 mt-4 flex items-center justify-between gap-2">
                   <div>
-                    <span className="text-base sm:text-lg font-black text-[#E31837] whitespace-nowrap">
+                    <span className="text-lg sm:text-xl font-black text-[#E31837] whitespace-nowrap">
                       {item.variants
                         ? `${item.variants[0].price}–${item.variants[item.variants.length - 1].price} ₴`
                         : `${item.price} ₴`
@@ -446,39 +436,14 @@ export default function PajamaLandingPage() {
                         addToCart(item, null, undefined, 1)
                       }
                     }}
-                    className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1.5 shrink-0"
+                    className="py-2.5 px-4 sm:px-5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs sm:text-sm font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-2 shrink-0"
                   >
-                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <ShoppingBag className="w-4 h-4" />
                     <span>В кошик</span>
                   </button>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Delivery & Payment Badges */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-3">
-              <span className="text-2xl">📦</span>
-              <div>
-                <h4 className="text-xs font-black text-slate-900">Доставка Новою Поштою</h4>
-                <p className="text-[11px] text-slate-600">Відправляємо по всій Україні до найближчого відділення або поштомату</p>
-              </div>
-            </div>
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-3">
-              <span className="text-2xl">💳</span>
-              <div>
-                <h4 className="text-xs font-black text-slate-900">Зручна та безпечна оплата</h4>
-                <p className="text-[11px] text-slate-600">Monobank, Apple Pay, Google Pay або карткою будь-якого банку</p>
-              </div>
-            </div>
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-3">
-              <span className="text-2xl">🏠</span>
-              <div>
-                <h4 className="text-xs font-black text-slate-900">100% на благодійність</h4>
-                <p className="text-[11px] text-slate-600">Усі кошти безпосередньо фінансують зведення 5-поверхового Дому</p>
-              </div>
-            </div>
           </div>
 
         </div>
