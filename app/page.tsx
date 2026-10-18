@@ -407,67 +407,114 @@ export default function PajamaLandingPage() {
       <section id="raffle" className="py-16 sm:py-24 bg-[#FAF6EB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="bg-[#D0C9FF] rounded-3xl sm:rounded-4xl p-6 sm:p-12 text-slate-900 shadow-xl relative overflow-hidden">
-            
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Left copy */}
-              <div className="lg:col-span-7 space-y-4">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 text-slate-900 text-xs font-black uppercase tracking-wider shadow-2xs">
-                  <Gift className="w-3.5 h-3.5 text-[#E31837]" />
-                  <span>Розіграш до Дня Піжам</span>
-                </span>
+          <div className="relative text-slate-900 drop-shadow-[0_20px_35px_rgba(79,70,229,0.09)] drop-shadow-[0_4px_6px_rgba(0,0,0,0.04)]">
+            {/* Organic RMHC Figure Background matching Reference 1 */}
+            <svg 
+              className="absolute inset-0 w-full h-full -z-10 pointer-events-none select-none" 
+              viewBox="0 0 1000 500" 
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <path 
+                  id="raffle-brand-shape" 
+                  d="
+                    M 50,22 
+                    C 20,25 10,50 10,80 
+                    C 22,200 22,300 10,420 
+                    C 10,455 28,485 70,485 
+                    C 250,485 450,490 700,488 
+                    C 850,485 960,490 980,455 
+                    C 994,430 994,350 992,250 
+                    C 990,150 994,70 980,45 
+                    C 960,20 890,22 815,22 
+                    L 775,2 
+                    L 735,22 
+                    C 600,22 300,22 50,22 
+                    Z" 
+                />
+              </defs>
+              {/* Primary Lavender Base */}
+              <use href="#raffle-brand-shape" fill="#D0C9FF" />
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-slate-950">
-                  Для всіх, хто зробить внесок від 50 грн, ми проведемо розіграш подарунків!
-                </h2>
+              {/* Signature RMHC Dynamic Organic Wave separating left copy & right prizes */}
+              <path 
+                d="
+                  M 530,22 
+                  C 480,130 450,230 500,340 
+                  C 535,420 570,460 610,488 
+                  L 980,455 
+                  C 994,430 994,350 992,250 
+                  C 990,150 994,70 980,45 
+                  C 960,20 890,22 815,22 
+                  L 775,2 
+                  L 735,22 
+                  Z" 
+                fill="rgba(255, 255, 255, 0.22)" 
+              />
+            </svg>
 
-                <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
-                  Кожні 50 ₴ у вашому внеску — це ще один шанс виграти чудові брендовані призи до Дня Піжам та підтримати зведення Дому для сімей!
-                </p>
+            <div className="relative z-10 p-6 sm:p-10 md:p-12 lg:p-14">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                
+                {/* Left copy */}
+                <div className="lg:col-span-7 space-y-4">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 text-slate-900 text-xs font-black uppercase tracking-wider shadow-2xs">
+                    <Gift className="w-3.5 h-3.5 text-[#E31837]" />
+                    <span>Розіграш до Дня Піжам</span>
+                  </span>
 
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={handleOpenDonate}
-                    className="py-4 px-7 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2"
-                  >
-                    <Heart className="w-5 h-5 fill-white" />
-                    <span>Зробити внесок від 50 ₴</span>
-                  </button>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-slate-950">
+                    Для всіх, хто зробить внесок від 50 грн, ми проведемо розіграш подарунків!
+                  </h2>
 
-                  <button
-                    onClick={() => setIsRulesOpen(true)}
-                    className="py-4 px-6 rounded-lg bg-white/80 hover:bg-white text-slate-800 font-bold text-sm sm:text-base border border-slate-300 shadow-2xs transition-colors cursor-pointer flex items-center gap-2"
-                  >
-                    <HelpCircle className="w-4 h-4 text-slate-500" />
-                    <span>Умови розіграшу</span>
-                  </button>
-                </div>
-              </div>
+                  <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
+                    Кожні 50 ₴ у вашому внеску — це ще один шанс виграти чудові брендовані призи до Дня Піжам та підтримати зведення Дому для сімей!
+                  </p>
 
-              {/* Right: Prizes Showcase Cards */}
-              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-slate-900">
-                {RAFFLE_PRIZES.map((prize, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-2xl bg-white shadow-sm border border-white/80 space-y-1.5 text-left transition-transform hover:-translate-y-0.5"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl">{prize.icon}</span>
-                      <span className="text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">
-                        {prize.tag}
-                      </span>
-                    </div>
-                    <h4 className="text-sm font-black text-slate-900 leading-snug pt-1">
-                      {prize.title}
-                    </h4>
-                    <p className="text-xs text-slate-600 line-clamp-2">
-                      {prize.desc}
-                    </p>
+                  <div className="pt-2 flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={handleOpenDonate}
+                      className="py-4 px-7 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2"
+                    >
+                      <Heart className="w-5 h-5 fill-white" />
+                      <span>Зробити внесок від 50 ₴</span>
+                    </button>
+
+                    <button
+                      onClick={() => setIsRulesOpen(true)}
+                      className="py-4 px-6 rounded-lg bg-white/80 hover:bg-white text-slate-800 font-bold text-sm sm:text-base border border-slate-300 shadow-2xs transition-colors cursor-pointer flex items-center gap-2"
+                    >
+                      <HelpCircle className="w-4 h-4 text-slate-500" />
+                      <span>Умови розіграшу</span>
+                    </button>
                   </div>
-                ))}
-              </div>
+                </div>
 
+                {/* Right: Prizes Showcase Cards */}
+                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-slate-900">
+                  {RAFFLE_PRIZES.map((prize, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-2xl bg-white shadow-sm border border-white/80 space-y-1.5 text-left transition-transform hover:-translate-y-0.5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl">{prize.icon}</span>
+                        <span className="text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">
+                          {prize.tag}
+                        </span>
+                      </div>
+                      <h4 className="text-sm font-black text-slate-900 leading-snug pt-1">
+                        {prize.title}
+                      </h4>
+                      <p className="text-xs text-slate-600 line-clamp-2">
+                        {prize.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
             </div>
           </div>
 
