@@ -200,29 +200,29 @@ export default function PajamaLandingPage() {
           </div>
 
           {/* Direct Action Triggers from Key Visual calls */}
-          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-3xl mx-auto">
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-4xl mx-auto">
             <button
               onClick={handleOpenDonate}
-              className="flex-1 py-4 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <Heart className="w-5 h-5 fill-white" />
-              <span>Зробити внесок</span>
+              <Heart className="w-5 h-5 fill-white shrink-0" />
+              <span className="whitespace-nowrap">Зробити внесок</span>
             </button>
 
             <a
               href="#online-pajama"
-              className="flex-1 py-4 px-6 rounded-2xl bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-lg shadow-green-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-lg shadow-green-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <Sparkles className="w-5 h-5" />
-              <span>Створи піжаму</span>
+              <Sparkles className="w-5 h-5 shrink-0" />
+              <span className="whitespace-nowrap">Створи піжаму</span>
             </a>
 
             <a
               href="#merch-shop"
-              className="flex-1 py-4 px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
-              <ShoppingBag className="w-5 h-5" />
-              <span>Благодійний магазин</span>
+              <ShoppingBag className="w-5 h-5 shrink-0" />
+              <span className="whitespace-nowrap">Благодійний магазин</span>
             </a>
           </div>
 
