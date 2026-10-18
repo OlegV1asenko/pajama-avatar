@@ -137,7 +137,7 @@ export default function PajamaLandingPage() {
               <a href="#online-pajama" className="hover:text-slate-900 transition-colors">Онлайн-піжама</a>
               <a href="#merch-shop" className="hover:text-slate-900 transition-colors flex items-center gap-1">
                 <span>Мерч-шоп</span>
-                <span className="text-[10px] bg-red-100 text-[#E31837] px-1.5 py-0.2 rounded-md font-black">NEW</span>
+                <span className="text-[10px] bg-[#FFBC0D] text-slate-950 px-1.5 py-0.5 rounded-md font-black">NEW</span>
               </a>
               <a href="#raffle" className="hover:text-slate-900 transition-colors">Розіграш</a>
               <a href="#about-house" className="hover:text-slate-900 transition-colors">Про Дім</a>
@@ -158,129 +158,92 @@ export default function PajamaLandingPage() {
         </div>
       </header>
 
-      {/* 2. HERO SECTION (KEY VISUAL) */}
-      <section className="relative overflow-hidden pt-8 pb-16 sm:pt-14 sm:pb-24">
-        {/* Subtle decorative background circles */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-amber-200/30 via-rose-200/20 to-purple-200/25 blur-3xl -z-10 pointer-events-none rounded-full" />
+      {/* 2. HERO: OFFICIAL KEY VISUAL BANNER CENTERPIECE */}
+      <section className="relative overflow-hidden pt-6 pb-14 sm:pt-10 sm:pb-20">
+        {/* Ambient periwinkle & warm glow matching Key Visual background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-r from-[#DDE2F8]/70 via-amber-100/40 to-[#E0E7FF]/60 blur-3xl -z-10 pointer-events-none rounded-full" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Left Copy: Word for Word from PDF */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              
-              {/* Event Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100/90 border border-red-300 text-[#E31837] text-xs font-black uppercase tracking-wider shadow-2xs">
-                <Calendar className="w-3.5 h-3.5" />
-                <span>13 листопада — Всеукраїнський День Піжам</span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
-                Одягаємо піжаму <span className="text-[#E31837]">не для сну</span>, а для підтримки!
-              </h1>
-
-              {/* Emotional Paragraph (from PDF page 1) */}
-              <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
-                <p>
-                  Коли діти хворіють у лікарнях, вони весь день проводять у піжамі, яка стає для них частинкою дому в лікарняних стінах.
-                </p>
-                <p>
-                  Саме тому раз на рік ми одягаємо піжаму не для сну, а для підтримки. Щоб нагадати дітям: за стінами лікарні є тисячі людей, які співпереживають, підтримують і вірять у їхню силу.
-                </p>
-                <p className="font-bold text-slate-900">
-                  А ще – побудувати Дім на території національної дитячої лікарні, де сім’ї мешкатимуть безкоштовно. Долучайся звідти, де ти є!
-                </p>
-              </div>
-
-              {/* Action Buttons: Red Donate + Merch Shop */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                <button
-                  onClick={handleOpenDonate}
-                  className="py-4 px-7 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
-                >
-                  <Heart className="w-5 h-5 fill-white" />
-                  <span>Задонатити (на монобанку)</span>
-                </button>
-
-                <a
-                  href="#merch-shop"
-                  className="py-4 px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <ShoppingBag className="w-5 h-5" />
-                  <span>Благодійний мерч-шоп</span>
-                </a>
-              </div>
-
-              {/* Micro proof */}
-              <div className="flex items-center gap-4 pt-1 text-xs text-slate-500 font-bold">
-                <span className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Донат від 50 ₴ бере участь у розіграші
-                </span>
-                <span className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-4 h-4 text-amber-600" />
-                  Офіційна ініціатива РМХК
-                </span>
-              </div>
-
-            </div>
-
-            {/* Right Visual: Key Visual Card */}
-            <div className="lg:col-span-5">
-              <div className="relative mx-auto max-w-md">
-                
-                {/* Visual Frame */}
-                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-amber-100 via-rose-50 to-purple-100 p-6 sm:p-8 border-4 border-white shadow-2xl space-y-6 text-center">
-                  
-                  {/* Decorative cozy badge */}
-                  <div className="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-white/90 text-xs font-black text-slate-800 shadow-xs mx-auto">
-                    <span>🌙</span>
-                    <span>День Піжам 2026</span>
-                    <span>🧸</span>
-                  </div>
-
-                  {/* Cozy Illustration / Mockup */}
-                  <div className="relative py-4">
-                    <div className="w-44 h-44 sm:w-52 sm:h-52 mx-auto rounded-full bg-white/90 shadow-inner flex items-center justify-center border-4 border-amber-300 text-7xl sm:text-8xl select-none">
-                      🧸
-                    </div>
-                    {/* Floating mood chips */}
-                    <div className="absolute top-2 left-2 sm:left-4 bg-white/95 py-1.5 px-3 rounded-2xl shadow-md border border-amber-200 text-xs font-black text-slate-800 animate-bounce">
-                      #ДеньПіжам ✨
-                    </div>
-                    <div className="absolute bottom-2 right-2 sm:right-4 bg-white/95 py-1.5 px-3 rounded-2xl shadow-md border border-purple-200 text-xs font-black text-purple-900">
-                      Затишок поруч 💛
-                    </div>
-                  </div>
-
-                  {/* Card Micro Content */}
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-black text-slate-900">
-                      Частинка дому в лікарні
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Одягни піжаму на один день, щоб діти відчули тепло мільйонів сердець по всій країні.
-                    </p>
-                  </div>
-
-                  {/* Interactive Button */}
-                  <a
-                    href="#online-pajama"
-                    className="w-full py-3 px-4 rounded-xl bg-white text-slate-900 font-black text-xs hover:bg-slate-50 border border-slate-200 shadow-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                    <span>Створити свою піжаму онлайн</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-
-                </div>
-
-              </div>
-            </div>
-
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* The Official Key Visual Banner Frame */}
+          <div className="relative rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 sm:border-[6px] border-white bg-[#FAF7EE] group transition-transform duration-500 hover:scale-[1.006]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-banner.png"
+              alt="13 листопада — День піжам. Покажи свою піжаму світу! Задонать на дім для хворих дітей і виграй подарунки. Долучайся звідти, де ти є. Дім Рональда МакДональда в Україні"
+              className="w-full h-auto object-cover select-none"
+            />
           </div>
+
+          {/* Direct Action Triggers from Key Visual calls */}
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-3xl mx-auto">
+            <button
+              onClick={handleOpenDonate}
+              className="flex-1 py-4 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            >
+              <Heart className="w-5 h-5 fill-white" />
+              <span>Задонатити на монобанку</span>
+            </button>
+
+            <a
+              href="#online-pajama"
+              className="flex-1 py-4 px-6 rounded-2xl bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-lg shadow-green-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            >
+              <Sparkles className="w-5 h-5" />
+              <span>Створити онлайн-піжаму</span>
+            </a>
+
+            <a
+              href="#merch-shop"
+              className="flex-1 py-4 px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              <span>Благодійний мерч</span>
+            </a>
+          </div>
+
+          {/* Trust proofs bar */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-slate-600 font-bold">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle className="w-4 h-4 text-[#70B83A]" />
+              Донат від 50 ₴ бере участь у розіграші
+            </span>
+            <span className="hidden sm:inline w-1 h-1 rounded-full bg-slate-300" />
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-amber-600" />
+              Офіційна ініціатива РМХК Україна
+            </span>
+            <span className="hidden sm:inline w-1 h-1 rounded-full bg-slate-300" />
+            <span className="flex items-center gap-1.5">
+              <Home className="w-4 h-4 text-[#E31837]" />
+              100% на будівництво Дому для сімей
+            </span>
+          </div>
+
+          {/* The Emotional Manifest from Brief */}
+          <div className="mt-14 sm:mt-18 pt-12 border-t border-amber-900/10 text-center max-w-4xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFBC0D] text-slate-950 text-xs font-black uppercase tracking-wider shadow-2xs">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>13 листопада — Всеукраїнський День Піжам</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+              Одягаємо піжаму <span className="text-[#E31837]">не для сну</span>, а для підтримки!
+            </h2>
+
+            <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal max-w-3xl mx-auto">
+              <p>
+                Коли діти хворіють у лікарнях, вони весь день проводять у піжамі, яка стає для них частинкою дому в лікарняних стінах.
+              </p>
+              <p>
+                Саме тому раз на рік ми одягаємо піжаму не для сну, а для підтримки. Щоб нагадати дітям: за стінами лікарні є тисячі людей, які співпереживають, підтримують і вірять у їхню силу.
+              </p>
+              <p className="font-bold text-slate-900">
+                А ще – побудувати Дім на території національної дитячої лікарні, де сім’ї мешкатимуть безкоштовно. Долучайся звідти, де ти є!
+              </p>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -289,7 +252,7 @@ export default function PajamaLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span className="text-xs font-black uppercase tracking-wider text-[#E31837] bg-red-50 px-3 py-1 rounded-full border border-red-200">
+            <span className="inline-block text-xs font-black uppercase tracking-wider text-slate-950 bg-[#FFBC0D] px-4 py-1.5 rounded-full shadow-2xs">
               Проста інструкція
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900">
@@ -401,7 +364,7 @@ export default function PajamaLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 text-[#E31837] text-xs font-black uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFBC0D] text-slate-950 text-xs font-black uppercase tracking-wider shadow-2xs">
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>Офіційний мерч-шоп акції</span>
             </div>
