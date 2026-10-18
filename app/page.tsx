@@ -123,16 +123,16 @@ export default function PajamaLandingPage() {
       {/* 1. TOP STICKY HEADER */}
       <header className="sticky top-0 z-40 bg-[#FAF6EB]/95 backdrop-blur-md border-b border-amber-900/10 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
+          <div className="flex items-center justify-between h-20 sm:h-24 gap-3">
             
-            {/* Logo */}
+            {/* Logo — Enlarged */}
             <div className="flex items-center gap-3 sm:gap-4 shrink-0">
               <a href="#" className="flex items-center group py-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/rmh_ukraine_logo_hrz_black.svg"
                   alt="Дім Рональда МакДональда Україна"
-                  className="h-8 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+                  className="h-12 sm:h-16 md:h-18 w-auto object-contain transition-transform group-hover:scale-105"
                 />
               </a>
             </div>
@@ -149,11 +149,11 @@ export default function PajamaLandingPage() {
               <a href="#about-house" className="hover:text-slate-900 transition-colors">Про Дім</a>
             </nav>
 
-            {/* Header Right Actions: Cart + Monobank Donate */}
+            {/* Header Right Actions: Cart + Donate */}
             <div className="flex items-center gap-2 sm:gap-2.5">
               <button
                 onClick={openCart}
-                className="relative flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black bg-white hover:bg-amber-50 text-slate-900 border border-amber-300 shadow-2xs active:scale-95 transition-all cursor-pointer"
+                className="relative flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-lg text-xs sm:text-sm font-black bg-white hover:bg-amber-50 text-slate-900 border border-amber-300 shadow-2xs active:scale-95 transition-all cursor-pointer"
                 aria-label="Відкрити кошик"
               >
                 <ShoppingBag className="w-4 h-4 text-amber-900" />
@@ -167,10 +167,10 @@ export default function PajamaLandingPage() {
 
               <button
                 onClick={handleOpenDonate}
-                className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black bg-[#E31837] hover:bg-[#C9132D] text-white shadow-sm active:scale-95 transition-all cursor-pointer"
+                className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-black bg-[#E31837] hover:bg-[#C9132D] text-white shadow-sm active:scale-95 transition-all cursor-pointer"
               >
-                <Heart className="w-3.5 h-3.5 fill-white" />
-                <span>Задонатити</span>
+                <Heart className="w-4 h-4 fill-white" />
+                <span>Зробити внесок</span>
               </button>
             </div>
 
@@ -199,7 +199,7 @@ export default function PajamaLandingPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-4xl mx-auto">
             <button
               onClick={handleOpenDonate}
-              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
               <Heart className="w-5 h-5 fill-white shrink-0" />
               <span className="whitespace-nowrap">Зробити внесок</span>
@@ -207,7 +207,7 @@ export default function PajamaLandingPage() {
 
             <a
               href="#online-pajama"
-              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-lg shadow-green-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-lg bg-[#70B83A] hover:bg-[#5FA12E] text-white font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
               <Sparkles className="w-5 h-5 shrink-0" />
               <span className="whitespace-nowrap">Створи піжаму</span>
@@ -215,7 +215,7 @@ export default function PajamaLandingPage() {
 
             <a
               href="#merch-shop"
-              className="flex-1 py-4 px-5 sm:px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+              className="flex-1 py-4 px-5 sm:px-6 rounded-lg bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm sm:text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
             >
               <ShoppingBag className="w-5 h-5 shrink-0" />
               <span className="whitespace-nowrap">Благодійний магазин</span>
@@ -390,7 +390,7 @@ export default function PajamaLandingPage() {
                         addToCart(item, null, undefined, 1)
                       }
                     }}
-                    className="py-2.5 px-4 sm:px-5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs sm:text-sm font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-2 shrink-0"
+                    className="py-2.5 px-4 sm:px-5 rounded-lg bg-slate-900 hover:bg-[#E31837] text-white text-xs sm:text-sm font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-2 shrink-0"
                   >
                     <ShoppingBag className="w-4 h-4" />
                     <span>В кошик</span>
@@ -403,66 +403,65 @@ export default function PajamaLandingPage() {
         </div>
       </section>
 
-      {/* 6. RAFFLE SECTION (FROM PDF) */}
-      <section id="raffle" className="py-16 sm:py-24 bg-gradient-to-b from-[#FAF6EB] to-amber-50/70">
+      {/* 6. RAFFLE SECTION — VIOLET STYLE MATCHING REFERENCE 2 */}
+      <section id="raffle" className="py-16 sm:py-24 bg-[#FAF6EB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 rounded-3xl sm:rounded-4xl p-6 sm:p-12 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-
+          <div className="bg-[#D0C9FF] rounded-3xl sm:rounded-4xl p-6 sm:p-12 text-slate-900 shadow-xl relative overflow-hidden">
+            
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* Left copy */}
               <div className="lg:col-span-7 space-y-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black uppercase tracking-wider backdrop-blur-xs">
-                  <Gift className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 text-slate-900 text-xs font-black uppercase tracking-wider shadow-2xs">
+                  <Gift className="w-3.5 h-3.5 text-[#E31837]" />
                   <span>Розіграш до Дня Піжам</span>
                 </span>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-white">
-                  Для всіх, хто зробить донат від 50 грн, ми проведемо розіграш подарунків!
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-slate-950">
+                  Для всіх, хто зробить внесок від 50 грн, ми проведемо розіграш подарунків!
                 </h2>
 
-                <p className="text-white/90 text-sm sm:text-base leading-relaxed">
-                  Кожні 50 ₴ у вашому донаті — це ще один шанс виграти чудові брендовані призи до Дня Піжам та відчути себе частиною великої доброї справи!
+                <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
+                  Кожні 50 ₴ у вашому внеску — це ще один шанс виграти чудові брендовані призи до Дня Піжам та підтримати зведення Дому для сімей!
                 </p>
 
-                <div className="pt-2 flex flex-wrap gap-3">
+                <div className="pt-2 flex flex-wrap items-center gap-3">
                   <button
                     onClick={handleOpenDonate}
-                    className="py-3.5 px-6 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-sm shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2"
+                    className="py-4 px-7 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2"
                   >
-                    <Heart className="w-4 h-4 fill-slate-950" />
-                    <span>Задонатити від 50 ₴ на монобанку</span>
+                    <Heart className="w-5 h-5 fill-white" />
+                    <span>Зробити внесок від 50 ₴</span>
                   </button>
 
                   <button
                     onClick={() => setIsRulesOpen(true)}
-                    className="py-3.5 px-5 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-sm border border-white/30 backdrop-blur-xs transition-colors cursor-pointer flex items-center gap-2"
+                    className="py-4 px-6 rounded-lg bg-white/80 hover:bg-white text-slate-800 font-bold text-sm sm:text-base border border-slate-300 shadow-2xs transition-colors cursor-pointer flex items-center gap-2"
                   >
-                    <HelpCircle className="w-4 h-4" />
+                    <HelpCircle className="w-4 h-4 text-slate-500" />
                     <span>Умови розіграшу</span>
                   </button>
                 </div>
               </div>
 
               {/* Right: Prizes Showcase Cards */}
-              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-900">
+              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-slate-900">
                 {RAFFLE_PRIZES.map((prize, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm shadow-md border border-white/50 space-y-1 text-left"
+                    className="p-4 rounded-2xl bg-white shadow-sm border border-white/80 space-y-1.5 text-left transition-transform hover:-translate-y-0.5"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-2xl">{prize.icon}</span>
-                      <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">
+                      <span className="text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">
                         {prize.tag}
                       </span>
                     </div>
-                    <h4 className="text-xs font-black text-slate-900 leading-tight pt-1">
+                    <h4 className="text-sm font-black text-slate-900 leading-snug pt-1">
                       {prize.title}
                     </h4>
-                    <p className="text-[10px] text-slate-600 line-clamp-2">
+                    <p className="text-xs text-slate-600 line-clamp-2">
                       {prize.desc}
                     </p>
                   </div>
@@ -477,88 +476,32 @@ export default function PajamaLandingPage() {
 
       {/* 7. ABOUT THE HOUSE (PAGE 2 FROM PDF) */}
       <section id="about-house" className="py-16 sm:py-24 bg-white border-t border-amber-900/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center sm:text-left">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* Left Column: House Stats & Visual Render Card */}
-            <div className="lg:col-span-5 space-y-6">
-              
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-amber-100 to-rose-50 p-6 sm:p-8 border-4 border-amber-200/80 shadow-xl space-y-6 text-center">
-                
-                <div className="w-20 h-20 rounded-2xl bg-[#E31837] text-white flex items-center justify-center mx-auto shadow-md">
-                  <Home className="w-10 h-10" />
-                </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+            Разом ми будуємо Дім для безкоштовного проживання сімей з важкохворими дітьми!
+          </h2>
 
-                <div className="space-y-1">
-                  <span className="text-xs font-black uppercase tracking-wider text-[#E31837]">
-                    Дім Рональда МакДональда
-                  </span>
-                  <h3 className="text-2xl font-black text-slate-900">
-                    Перший Дім для сімей в Україні
-                  </h3>
-                  <p className="text-xs text-slate-600">
-                    На території національної дитячої лікарні «Охматдит»
-                  </p>
-                </div>
+          <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed">
+            <p>
+              Це буде будинок на <strong>5 поверхів і 50 затишних спалень</strong> на території національної дитячої лікарні «Охматдит», куди привозять дітей з найскладнішими діагнозами з усіх куточків нашої країни.
+            </p>
+            <p>
+              Місце, де родина зможе залишатися разом тоді, коли малеча проходить найскладніше випробування у своєму житті.
+            </p>
+            <p className="text-slate-800 font-medium leading-relaxed">
+              Де мама зможе перепочити після безсонної ночі, тато — випити чашку чаю і набратися сил, бабуся — приготувати улюблену страву для родини, дитина після процедур — провести час у затишку поруч із найріднішими. Щоб відчути себе ніби вдома.
+            </p>
+          </div>
 
-                {/* Key Numbers from PDF */}
-                <div className="grid grid-cols-2 gap-3 pt-2">
-                  <div className="p-3 rounded-2xl bg-white shadow-2xs border border-amber-100">
-                    <span className="block text-2xl font-black text-[#E31837]">5</span>
-                    <span className="text-[11px] font-bold text-slate-600">поверхів затишку</span>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-white shadow-2xs border border-amber-100">
-                    <span className="block text-2xl font-black text-[#FFBC0D]">50</span>
-                    <span className="text-[11px] font-bold text-slate-600">сімейних спалень</span>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-white shadow-2xs border border-amber-100 col-span-2">
-                    <span className="block text-lg font-black text-green-700">0 ₴ для кожної сім’ї</span>
-                    <span className="text-[11px] font-bold text-slate-600">повністю безкоштовне проживання поруч із дитиною</span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            {/* Right Column: Full Word-for-Word Text from PDF page 2 */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-black uppercase tracking-wider">
-                <Heart className="w-3.5 h-3.5 text-[#E31837] fill-[#E31837]" />
-                <span>Велика благодійна мета</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                Разом ми будуємо Дім для безкоштовного проживання сімей з важкохворими дітьми!
-              </h2>
-
-              {/* Exact text from page 2 */}
-              <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed">
-                <p>
-                  Це буде будинок на <strong>5 поверхів і 50 затишних спалень</strong> на території національної дитячої лікарні, куди привозять дітей з найскладнішими діагнозами з усіх куточків нашої країни.
-                </p>
-                <p>
-                  Місце, де родина зможе залишатися разом тоді, коли малеча проходить найскладніше випробування у своєму житті.
-                </p>
-                <p className="p-4 rounded-2xl bg-amber-50 border-l-4 border-amber-400 text-slate-800 italic">
-                  «Де мама зможе перепочити після безсонної ночі, тато випити чашку чаю і набратися сил, бабуся приготувати улюблену страву для родини, дитина після процедур – провести час у затишку поруч із найріднішими. Щоб відчути себе, ніби вдома.»
-                </p>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  onClick={handleOpenDonate}
-                  className="py-4 px-8 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <Heart className="w-5 h-5 fill-white" />
-                  <span>Долучитися до будівництва Дому</span>
-                </button>
-              </div>
-
-            </div>
-
+          <div className="pt-2">
+            <button
+              onClick={handleOpenDonate}
+              className="py-4 px-8 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-md active:scale-98 transition-all flex items-center gap-2 cursor-pointer mx-auto sm:mx-0"
+            >
+              <Heart className="w-5 h-5 fill-white" />
+              <span>Зробити внесок</span>
+            </button>
           </div>
 
         </div>
@@ -577,17 +520,17 @@ export default function PajamaLandingPage() {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={handleOpenDonate}
-              className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base sm:text-lg shadow-xl shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              className="w-full sm:w-auto py-4 px-8 rounded-lg bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Heart className="w-5 h-5 fill-white" />
-              <span>Задонатити (на монобанку)</span>
+              <span>Зробити внесок</span>
             </button>
             <a
               href="#merch-shop"
-              className="w-full sm:w-auto py-4 px-7 rounded-2xl bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto py-4 px-7 rounded-lg bg-[#FFBC0D] hover:bg-[#E5A80B] text-slate-950 font-black text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <ShoppingBag className="w-5 h-5" />
-              <span>Обрати піжаму в мерч-шопі</span>
+              <span>Благодійний магазин</span>
             </a>
           </div>
         </div>
