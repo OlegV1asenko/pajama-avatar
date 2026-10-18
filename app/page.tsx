@@ -22,47 +22,61 @@ import { PajamaAvatarSection } from '@/components/PajamaAvatarSection'
 
 const MERCH_ITEMS: ShopItem[] = [
   {
-    id: 'adult-pajama',
-    name: 'Офіційна піжама «Дім Надії» (доросла)',
-    description: '100% натуральна м’яка бавовна, затишний крій, фірмова нашивка #ДеньПіжам.',
-    price: 1350,
+    id: 'shopper',
+    name: 'Шопер фірмовий «Дім Надії»',
+    description: 'Місткий бавовняний шопер з фірмовим візерунком та червоними ручками. 300 ₴ без підкладки або 400 ₴ зі щільною червоною підкладкою.',
+    price: 300,
+    category: 'Сумки & Шопери',
+    imageSrc: '/merch/shopper.png',
+    variants: [
+      { name: 'Без підкладки', price: 300 },
+      { name: 'З червоною підкладкою', price: 400 },
+    ],
+    badge: 'Бестселер',
+    colorTheme: '#FFF9EB',
+  },
+  {
+    id: 'cup',
+    name: 'Керамічна чашка «Дім Рональда»',
+    description: 'Затишна керамічна чашка для чаю або какао з офіційним логотипом Фундації. Різні кольори в асортименті.',
+    price: 500,
+    category: 'Посуд',
+    imageSrc: '/merch/cup.png',
+    sizes: ['Жовта класична', 'Помаранчева', 'Кольоровий мікс'],
+    badge: 'Затишок',
+    colorTheme: '#FFF3E0',
+  },
+  {
+    id: 'pillow',
+    name: 'Подушка декоративна (45×45 см)',
+    description: 'М’яка інтер’єрна подушка 45*45 см з фірмовим патерном теплих кольорових будиночків. Створює домашній затишок.',
+    price: 400,
+    category: 'Дім & Інтер’єр',
+    imageSrc: '/merch/pillow.png',
+    sizes: ['45×45 см'],
+    badge: 'Дім і тепло',
+    colorTheme: '#EBF7FF',
+  },
+  {
+    id: 'socks',
+    name: 'Шкарпетки благодійні «Символ підтримки»',
+    description: 'Яскраві теплі шкарпетки з фірмовою листівкою РМХК. Універсальний розмір, що підходить кожному.',
+    price: 150,
     category: 'Одяг',
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'Хіт сезону',
-    colorTheme: '#FFF3D6',
-    iconName: 'pajama',
+    imageSrc: '/merch/socks.png',
+    sizes: ['Універсальний (One size)'],
+    badge: 'Символ акції',
+    colorTheme: '#FFF0F0',
   },
   {
-    id: 'kids-pajama',
-    name: 'Дитяча затишна піжама з ведмедиком',
-    description: 'Гіпоалергенна тепла фланель для найменших чемпіонів. Зігріває з турботою.',
-    price: 950,
-    category: 'Дітям',
-    sizes: ['98-104', '110-116', '122-128', '134-140', '146-152'],
-    badge: 'Для малечі',
-    colorTheme: '#E6F8FD',
-    iconName: 'kids',
-  },
-  {
-    id: 'ronald-socks',
-    name: 'Теплі смугасті шкарпетки Рональда',
-    description: 'Легендарні червоно-жовті смужки, що дарують усмішку та затишок у будь-який день.',
-    price: 250,
-    category: 'Аксесуари',
-    sizes: ['35-38', '39-42', '43-46'],
-    badge: 'Символ підтримки',
-    colorTheme: '#FFE8E8',
-    iconName: 'socks',
-  },
-  {
-    id: 'stickers-pins',
-    name: 'Набір металевих значків та стікерів',
-    description: 'Фірмовий пін з піжамою та водостійкі стікери для ноутбука чи термочашки.',
-    price: 180,
-    category: 'Сувеніри',
-    badge: 'Добрий подарунок',
-    colorTheme: '#EFEAFF',
-    iconName: 'pin',
+    id: 'toy',
+    name: 'Новорічна прикраса «Будиночок Надії»',
+    description: 'Авторська керамічна прикраса ручної роботи від Samsara Decor з джутовою мотузкою та подарунковим пакуванням.',
+    price: 150,
+    category: 'Новий Рік',
+    imageSrc: '/merch/toy.png',
+    badge: 'Handmade',
+    colorTheme: '#F6F0FF',
   },
 ]
 
@@ -404,59 +418,62 @@ export default function PajamaLandingPage() {
             </p>
           </div>
 
-          {/* Merch Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Merch Product Grid — 5 Real Items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {MERCH_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#FAF6EB] rounded-3xl p-5 border border-amber-200/70 hover:border-amber-400 hover:shadow-lg transition-all flex flex-col justify-between group"
+                className="bg-[#FAF6EB] rounded-3xl p-4 sm:p-5 border border-amber-200/80 hover:border-amber-400 hover:shadow-xl transition-all flex flex-col justify-between group bg-white/70 hover:bg-white"
               >
                 <div>
-                  {/* Product Visual Container */}
+                  {/* Product Visual Container with Real Cutout Image */}
                   <div 
-                    className="w-full aspect-square rounded-2xl flex items-center justify-center relative overflow-hidden mb-4 shadow-2xs group-hover:scale-102 transition-transform"
+                    className="w-full aspect-square rounded-2xl p-3 flex items-center justify-center relative overflow-hidden mb-3.5 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-md"
                     style={{ backgroundColor: item.colorTheme }}
                   >
                     {item.badge && (
-                      <span className="absolute top-2.5 left-2.5 text-[10px] font-black uppercase tracking-wider bg-white/95 py-0.5 px-2.5 rounded-full shadow-2xs text-slate-800">
+                      <span className="absolute top-2.5 left-2.5 text-[9px] font-black uppercase tracking-wider bg-white/95 py-0.5 px-2.5 rounded-full shadow-2xs text-slate-800 z-10">
                         {item.badge}
                       </span>
                     )}
 
-                    <div className="text-6xl select-none">
-                      {item.iconName === 'pajama' && '👘'}
-                      {item.iconName === 'kids' && '🧸'}
-                      {item.iconName === 'socks' && '🧦'}
-                      {item.iconName === 'pin' && '⭐'}
-                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.imageSrc}
+                      alt={item.name}
+                      className="w-full h-full object-contain drop-shadow-sm group-hover:scale-108 transition-transform duration-300"
+                    />
                   </div>
 
                   {/* Title & Desc */}
-                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">
                     {item.category}
                   </span>
-                  <h3 className="text-base font-black text-slate-900 leading-snug mt-0.5 mb-1.5">
+                  <h3 className="text-sm sm:text-base font-black text-slate-900 leading-snug mt-0.5 mb-1">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Price & Action */}
-                <div className="pt-4 border-t border-amber-200/60 mt-4 flex items-center justify-between gap-2">
+                <div className="pt-3.5 border-t border-amber-200/60 mt-3.5 flex items-center justify-between gap-1.5">
                   <div>
-                    <span className="text-lg font-black text-[#E31837]">
-                      {item.price} ₴
+                    <span className="text-base sm:text-lg font-black text-[#E31837] whitespace-nowrap">
+                      {item.variants
+                        ? `${item.variants[0].price}–${item.variants[item.variants.length - 1].price} ₴`
+                        : `${item.price} ₴`
+                      }
                     </span>
-                    <span className="block text-[9px] font-bold text-slate-400">
-                      благодійний внесок
+                    <span className="block text-[8.5px] font-bold text-slate-400">
+                      100% на Дім
                     </span>
                   </div>
 
                   <button
                     onClick={() => setSelectedShopItem(item)}
-                    className="py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1.5"
+                    className="py-2 px-3 sm:px-3.5 rounded-xl bg-slate-900 hover:bg-[#E31837] text-white text-xs font-black transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-1 shrink-0"
                   >
                     <ShoppingBag className="w-3.5 h-3.5" />
                     <span>Замовити</span>

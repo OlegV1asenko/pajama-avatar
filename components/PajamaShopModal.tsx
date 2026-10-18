@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState } from 'react'
-import { X, ShoppingBag, Truck, Check, Heart, ShieldCheck, ArrowRight } from 'lucide-react'
+import { X, Truck, Check, Heart, ShieldCheck, ArrowRight } from 'lucide-react'
 import confetti from 'canvas-confetti'
+
+export interface ShopItemVariant {
+  name: string
+  price: number
+}
 
 export interface ShopItem {
   id: string
@@ -10,10 +15,11 @@ export interface ShopItem {
   description: string
   price: number
   category: string
+  imageSrc: string
   sizes?: string[]
+  variants?: ShopItemVariant[]
   badge?: string
   colorTheme: string
-  iconName: 'pajama' | 'socks' | 'pin' | 'kids'
 }
 
 interface PajamaShopModalProps {
@@ -27,6 +33,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [selectedVariant, setSelectedVariant] = useState<ShopItemVariant | null>(null)
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [fullName, setFullName] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
@@ -37,8 +44,14 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
 
   // Reset state when item changes
   React.useEffect(() => {
+    if (item && item.variants && item.variants.length > 0) {
+      setSelectedVariant(item.variants[0])
+    } else {
+      setSelectedVariant(null)
+    }
+
     if (item && item.sizes && item.sizes.length > 0) {
-      setSelectedSize(item.sizes[1] || item.sizes[0])
+      setSelectedSize(item.sizes[0])
     } else {
       setSelectedSize('')
     }
@@ -48,6 +61,8 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
 
   if (!isOpen || !item) return null
 
+  const currentPrice = selectedVariant ? selectedVariant.price : item.price
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!fullName.trim() || !phone.trim() || !city.trim() || !warehouse.trim()) {
@@ -55,7 +70,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
       return
     }
     if (item.sizes && item.sizes.length > 0 && !selectedSize) {
-      setError('Будь ласка, оберіть розмір')
+      setError('Будь ласка, оберіть потрібний варіант/розмір')
       return
     }
 
@@ -97,7 +112,9 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
               Дякуємо за ваше замовлення! ❤️
             </h3>
             <p className="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
-              Ви замовили <strong>{item.name}</strong> ({selectedSize && `розмір ${selectedSize}, `}{item.price} ₴).
+              Ви замовили <strong>{item.name}</strong>
+              {selectedVariant && ` (${selectedVariant.name})`}
+              {selectedSize && ` (${selectedSize})`} на суму <strong>{currentPrice} ₴</strong>.
               100% прибутку спрямовано на будівництво Дому для важкохворих діток!
             </p>
             <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-slate-700 text-left space-y-1.5">
@@ -117,13 +134,18 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Header / Product summary */}
+            {/* Header / Product summary with real transparent image */}
             <div className="flex items-start gap-4 pb-4 border-b border-slate-100">
               <div 
-                className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-xs"
+                className="w-20 h-20 rounded-2xl p-2 flex items-center justify-center shrink-0 shadow-xs border border-amber-100/80 overflow-hidden"
                 style={{ backgroundColor: item.colorTheme }}
               >
-                <ShoppingBag className="w-8 h-8 text-slate-800" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.imageSrc}
+                  alt={item.name}
+                  className="w-full h-full object-contain drop-shadow-xs"
+                />
               </div>
               <div className="flex-1">
                 <span className="inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-100 text-[#E31837] mb-1">
@@ -133,8 +155,8 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
                   {item.name}
                 </h3>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-xl font-black text-[#E31837]">
-                    {item.price} ₴
+                  <span className="text-2xl font-black text-[#E31837]">
+                    {currentPrice} ₴
                   </span>
                   <span className="text-[11px] font-bold text-slate-400">
                     100% на будівництво Дому
@@ -143,11 +165,39 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
               </div>
             </div>
 
-            {/* Size selector if sizes available */}
+            {/* Variant picker if variants exist (e.g. shopper with/without lining) */}
+            {item.variants && item.variants.length > 0 && (
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  Оберіть комплектацію:
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {item.variants.map((v) => (
+                    <button
+                      type="button"
+                      key={v.name}
+                      onClick={() => setSelectedVariant(v)}
+                      className={`
+                        p-2.5 rounded-xl text-left border transition-all cursor-pointer flex items-center justify-between
+                        ${selectedVariant?.name === v.name
+                          ? 'border-amber-500 bg-amber-50/70 shadow-xs ring-2 ring-amber-300'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                        }
+                      `}
+                    >
+                      <span className="text-xs font-bold">{v.name}</span>
+                      <span className="text-xs font-black text-[#E31837]">{v.price} ₴</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Size or Option selector if sizes available */}
             {item.sizes && item.sizes.length > 0 && (
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                  Оберіть розмір:
+                  Оберіть варіант / розмір:
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {item.sizes.map((s) => (
@@ -235,7 +285,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
               className="w-full py-3.5 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
             >
               <Heart className="w-4 h-4 fill-white" />
-              <span>Замовити за {item.price} ₴</span>
+              <span>Замовити за {currentPrice} ₴</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
