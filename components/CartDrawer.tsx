@@ -69,7 +69,7 @@ export const CartDrawer: React.FC = () => {
         particleCount: 120,
         spread: 90,
         origin: { y: 0.5 },
-        colors: ['#FFBC0D', '#E31837', '#70B83A', '#8EE7F8'],
+        colors: ['#FFBC0D', '#DB0007', '#70B83A', '#8EE7F8'],
       });
     } catch {
       // ignore
@@ -138,7 +138,7 @@ export const CartDrawer: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-white border border-amber-200/80 shadow-2xs text-left space-y-2 text-xs">
                   <div className="flex justify-between border-b border-slate-100 pb-2">
                     <span className="text-slate-500 font-bold">Сума до сплати:</span>
-                    <span className="font-black text-base text-[#E31837]">{orderSummary.total} ₴</span>
+                    <span className="font-black text-base text-[#DB0007]">{orderSummary.total} ₴</span>
                   </div>
                   <p><strong>Отримувач:</strong> {orderSummary.name}</p>
                   <p><strong>Телефон:</strong> {orderSummary.phone}</p>
@@ -159,7 +159,7 @@ export const CartDrawer: React.FC = () => {
                 {/* Monobank Payment Callout */}
                 <div className="p-4 rounded-2xl bg-[#FFBC0D]/20 border border-[#FFBC0D] text-left space-y-2">
                   <span className="text-xs font-black text-slate-950 flex items-center gap-1.5">
-                    <Heart className="w-4 h-4 fill-[#E31837] text-[#E31837]" />
+                    <Heart className="w-4 h-4 fill-[#DB0007] text-[#DB0007]" />
                     Оплата замовлення:
                   </span>
                   <p className="text-xs text-slate-700">
@@ -169,7 +169,7 @@ export const CartDrawer: React.FC = () => {
                     href="https://send.monobank.ua/jar/dzjHcxY9m"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 px-4 rounded-xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    className="w-full py-3 px-4 rounded-xl bg-[#DB0007] hover:bg-[#91187D] text-white font-black text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <span>Оплатити {orderSummary.total} ₴ на монобанку</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -252,7 +252,7 @@ export const CartDrawer: React.FC = () => {
                         )}
 
                         <div className="flex items-center justify-between mt-2">
-                          <span className="text-xs sm:text-sm font-black text-[#E31837]">
+                          <span className="text-xs sm:text-sm font-black text-[#DB0007]">
                             {item.price * item.quantity} ₴
                             {item.quantity > 1 && (
                               <span className="text-[10px] text-slate-400 font-normal ml-1">
@@ -290,7 +290,7 @@ export const CartDrawer: React.FC = () => {
                 {/* Checkout form */}
                 <form onSubmit={handleSubmitOrder} className="pt-4 border-t border-amber-900/10 space-y-3.5">
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                    <Truck className="w-3.5 h-3.5 text-[#E31837]" />
+                    <Truck className="w-3.5 h-3.5 text-[#DB0007]" />
                     <span>Дані для доставки Новою Поштою:</span>
                   </h4>
 
@@ -339,14 +339,14 @@ export const CartDrawer: React.FC = () => {
                   <div className="pt-3 border-t border-amber-900/10 space-y-3">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs font-bold text-slate-500">Загальна сума:</span>
-                      <span className="text-2xl font-black text-[#E31837]">
+                      <span className="text-2xl font-black text-[#DB0007]">
                         {totalAmount} ₴
                       </span>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-4 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-4 px-6 rounded-2xl bg-[#DB0007] hover:bg-[#91187D] text-white font-black text-sm shadow-lg shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <Heart className="w-4 h-4 fill-white" />
                       <span>Оформити та оплатити ({totalAmount} ₴)</span>

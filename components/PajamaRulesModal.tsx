@@ -45,32 +45,44 @@ export const PajamaRulesModal: React.FC<PajamaRulesModalProps> = ({
         </div>
 
         <div className="space-y-4 text-slate-700 text-sm">
-          <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-start gap-2.5">
+          <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 flex items-start gap-2.5">
             <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <p>
               <strong>Хто бере участь:</strong> кожен, хто зробить благодійний внесок <strong>від 50 грн</strong> на будівництво Дому Рональда МакДональда.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
             <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
             <p>
               <strong>Кожен донат — це квиток:</strong> кожні 50 грн у сумі внеску збільшують шанси (наприклад, внесок 200 грн = 4 шанси на виграш).
             </p>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
             <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
             <p>
-              <strong>Контактні дані:</strong> при донаті на Монобанку обов’язково вказуйте свій номер телефону або нік в Instagram / Telegram у полі «Коментар», щоб ми могли з вами зв’язатися.
+              <strong>Контактні дані:</strong> при донаті обов’язково вказуйте свій номер телефону або нік в Instagram / Telegram у полі «Коментар», щоб ми могли з вами зв’язатися.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
             <CheckCircle2 className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
             <p>
-              <strong>Коли розіграш:</strong> підведення підсумків відбудеться у прямому ефірі в соцмережах Фундації за допомогою рандомайзера після завершення акції.
+              <strong>Коли розіграш:</strong> підведення підсумків відбудеться у прямому ефірі в соцмережах Фундації після завершення акції.
             </p>
+          </div>
+
+          <div className="pt-2 text-center">
+            <a
+              href="https://dimronaldamacdonalda.org.ua/wp-content/uploads/Правила_участі_День-Піжам2026-2.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-[#DB0007] font-bold hover:underline font-raleway"
+            >
+              <span>Завантажити офіційні «Правила участі День-Піжам 2026» (PDF)</span>
+              <AlertCircle className="w-3.5 h-3.5" />
+            </a>
           </div>
 
           <div className="flex items-center gap-2 text-xs text-slate-500 pt-1">
@@ -85,14 +97,14 @@ export const PajamaRulesModal: React.FC<PajamaRulesModalProps> = ({
               onClose()
               onDonateClick()
             }}
-            className="flex-1 py-3 px-5 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="flex-1 py-3 px-5 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-sm shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
           >
             <Gift className="w-4 h-4" />
             <span>Зробити донат від 50 ₴</span>
           </button>
           <button
             onClick={onClose}
-            className="py-3 px-5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-colors cursor-pointer"
+            className="py-3 px-5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-colors cursor-pointer font-raleway"
           >
             Зрозуміло
           </button>

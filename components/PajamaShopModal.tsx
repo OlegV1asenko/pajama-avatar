@@ -82,7 +82,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
         particleCount: 100,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#FFBC0D', '#E31837', '#8EE7F8', '#D0C9FF'],
+        colors: ['#FFBC0D', '#DB0007', '#8EE7F8', '#D0C9FF'],
       })
     } catch {
       // ignore
@@ -148,14 +148,14 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
                 />
               </div>
               <div className="flex-1">
-                <span className="inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-100 text-[#E31837] mb-1">
+                <span className="inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-100 text-[#DB0007] mb-1">
                   Благодійний мерч
                 </span>
                 <h3 className="text-lg font-black text-slate-900 leading-snug">
                   {item.name}
                 </h3>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-2xl font-black text-[#E31837]">
+                  <span className="text-2xl font-black text-[#DB0007]">
                     {currentPrice} ₴
                   </span>
                   <span className="text-[11px] font-bold text-slate-400">
@@ -186,7 +186,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
                       `}
                     >
                       <span className="text-xs font-bold">{v.name}</span>
-                      <span className="text-xs font-black text-[#E31837]">{v.price} ₴</span>
+                      <span className="text-xs font-black text-[#DB0007]">{v.price} ₴</span>
                     </button>
                   ))}
                 </div>
@@ -282,7 +282,7 @@ export const PajamaShopModal: React.FC<PajamaShopModalProps> = ({
 
             <button
               type="submit"
-              className="w-full py-3.5 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-sm sm:text-base transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-6 rounded-2xl bg-[#DB0007] hover:bg-[#91187D] text-white font-black text-sm sm:text-base transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
             >
               <Heart className="w-4 h-4 fill-white" />
               <span>Замовити за {currentPrice} ₴</span>

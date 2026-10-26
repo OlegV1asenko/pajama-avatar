@@ -36,13 +36,13 @@ export const PajamaDonateModal: React.FC<PajamaDonateModalProps> = ({
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#E31837', '#FFBC0D', '#8EE7F8'],
+        colors: ['#DB0007', '#FFBC0D', '#8EE7F8'],
       })
     } catch {
       // ignore
     }
     // Open Monobank Jar
-    window.open('https://send.monobank.ua/jar/3m7kCg5uNx', '_blank')
+    window.open('https://send.monobank.ua/jar/3JSJjNu4H4', '_blank')
   }
 
   const handleCopyIban = () => {
@@ -66,8 +66,8 @@ export const PajamaDonateModal: React.FC<PajamaDonateModalProps> = ({
         </button>
 
         <div className="text-center space-y-2 mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-red-100 text-[#E31837] flex items-center justify-center mx-auto shadow-xs">
-            <Heart className="w-7 h-7 fill-[#E31837]" />
+          <div className="w-14 h-14 rounded-2xl bg-red-100 text-[#DB0007] flex items-center justify-center mx-auto shadow-xs">
+            <Heart className="w-7 h-7 fill-[#DB0007]" />
           </div>
           <h3 className="text-2xl font-black text-slate-900">
             Підтримати Дім для дітей
@@ -114,7 +114,7 @@ export const PajamaDonateModal: React.FC<PajamaDonateModalProps> = ({
                 className={`
                   py-2.5 px-2 rounded-xl text-sm font-black transition-all cursor-pointer border
                   ${selectedAmount === amt && !customAmount
-                    ? 'bg-[#E31837] text-white border-[#E31837] shadow-xs scale-105'
+                    ? 'bg-[#DB0007] text-white border-[#DB0007] shadow-xs scale-105'
                     : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300'
                   }
                 `}
@@ -146,7 +146,7 @@ export const PajamaDonateModal: React.FC<PajamaDonateModalProps> = ({
         <div className="space-y-3">
           <button
             onClick={handleDonateMonobank}
-            className="w-full py-4 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-base shadow-lg shadow-red-200 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
+            className="w-full py-4 px-6 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-base shadow-lg shadow-red-200 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2 font-raleway"
           >
             <Sparkles className="w-5 h-5 fill-white" />
             <span>Задонатити {activeAmount > 0 ? `${activeAmount} ₴` : ''} на Монобанку</span>

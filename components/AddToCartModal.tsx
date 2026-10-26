@@ -74,7 +74,7 @@ export const AddToCartModal: React.FC<AddToCartModalProps> = ({ item, isOpen, on
             <h3 className="text-base font-black text-slate-900 leading-tight">
               {item.name}
             </h3>
-            <span className="text-lg font-black text-[#E31837]">
+            <span className="text-lg font-black text-[#DB0007]">
               {currentPrice} ₴
             </span>
           </div>
@@ -102,7 +102,7 @@ export const AddToCartModal: React.FC<AddToCartModalProps> = ({ item, isOpen, on
                     `}
                   >
                     <span>{v.name}</span>
-                    <span className="font-black text-[#E31837]">{v.price} ₴</span>
+                    <span className="font-black text-[#DB0007]">{v.price} ₴</span>
                   </button>
                 ))}
               </div>
@@ -163,7 +163,7 @@ export const AddToCartModal: React.FC<AddToCartModalProps> = ({ item, isOpen, on
         {/* Action Button */}
         <button
           onClick={handleAdd}
-          className="w-full py-3.5 px-6 rounded-2xl bg-[#E31837] hover:bg-[#C9132D] text-white font-black text-xs shadow-md shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-3.5 px-6 rounded-2xl bg-[#DB0007] hover:bg-[#91187D] text-white font-black text-xs shadow-md shadow-red-200 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <ShoppingBag className="w-4 h-4" />
           <span>Додати в кошик ({currentPrice * quantity} ₴)</span>
