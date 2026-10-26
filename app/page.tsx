@@ -224,26 +224,26 @@ export default function PajamaLandingPage() {
                 <img
                   src="/rmh_ukraine_logo_hrz_black.svg"
                   alt="Дім Рональда МакДональда Україна"
-                  className="h-12 sm:h-16 md:h-18 w-auto object-contain transition-transform group-hover:scale-105"
+                  className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105"
                 />
               </a>
             </div>
 
-            {/* In-page navigation links — Exact Raleway 800, Normal-case, 18-20px as on original */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[18px] xl:text-[19px] font-extrabold text-[#000000] font-raleway tracking-[-0.1px]">
-              <a href="#how-to-join" className="hover:text-[#DB0007] transition-colors py-1">Як долучитися</a>
-              <a href="#online-pajama" className="hover:text-[#DB0007] transition-colors py-1">Онлайн-піжама</a>
-              <a href="#merch-shop" className="hover:text-[#DB0007] transition-colors py-1 flex items-center gap-1.5">
+            {/* In-page navigation links — Exact Raleway bold, single-line, fits elegantly without wrapping */}
+            <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-7 text-[14px] xl:text-[15.5px] 2xl:text-[17px] font-bold text-[#000000] font-raleway tracking-[-0.2px] whitespace-nowrap">
+              <a href="#how-to-join" className="hover:text-[#DB0007] transition-colors py-1 whitespace-nowrap shrink-0">Як долучитися</a>
+              <a href="#online-pajama" className="hover:text-[#DB0007] transition-colors py-1 whitespace-nowrap shrink-0">Онлайн-піжама</a>
+              <a href="#merch-shop" className="hover:text-[#DB0007] transition-colors py-1 flex items-center gap-1.5 whitespace-nowrap shrink-0">
                 <span>Мерч-шоп</span>
                 <span className="text-[10px] bg-[#FFBC0D] text-slate-950 px-1.5 py-0.5 rounded-md font-black tracking-normal">NEW</span>
               </a>
-              <a href="#raffle" className="hover:text-[#DB0007] transition-colors py-1">Розіграш</a>
-              <a href="#about-house" className="hover:text-[#DB0007] transition-colors py-1">Про Дім</a>
-              <a href="#history" className="hover:text-[#DB0007] transition-colors py-1">Історія акції</a>
+              <a href="#raffle" className="hover:text-[#DB0007] transition-colors py-1 whitespace-nowrap shrink-0">Розіграш</a>
+              <a href="#about-house" className="hover:text-[#DB0007] transition-colors py-1 whitespace-nowrap shrink-0">Про Дім</a>
+              <a href="#history" className="hover:text-[#DB0007] transition-colors py-1 whitespace-nowrap shrink-0">Історія акції</a>
             </nav>
 
             {/* Header Right Actions: Cart + Donate with Official Button Shape */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <button
                 onClick={openCart}
                 className="relative flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-slate-900 border border-slate-300 shadow-2xs active:scale-95 transition-all cursor-pointer font-raleway"
@@ -275,22 +275,22 @@ export default function PajamaLandingPage() {
       <section className="relative overflow-hidden pt-4 sm:pt-6 pb-12 sm:pb-16 bg-[#FFFDE9]">
         <div className="w-full max-w-[1540px] mx-auto px-2 sm:px-4 lg:px-6 space-y-8">
           
-          {/* Key Visual Banner with Official RMHC Organic Curved Mask */}
+          {/* Key Visual Banner with Official RMHC Organic Curved Mask & Slender Horizontal Borders */}
           <div className="relative w-full drop-shadow-[0_15px_30px_rgba(0,0,0,0.06)]">
-            <div className="rmhc-mask bg-[#D0C9FF] overflow-hidden">
+            <div className="rmhc-mask relative w-full overflow-hidden bg-[#D0C9FF] sm:aspect-[2.45/1] max-h-[580px]">
               {/* Desktop Banner */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/events/denPizham_Web_UA_1920x1080.png"
                 alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
-                className="hidden sm:block w-full h-auto object-contain mx-auto select-none"
+                className="hidden sm:block w-full h-full object-cover object-center select-none"
               />
               {/* Mobile Banner */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/events/denPizham_Mob_UA_630x1080.png"
                 alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
-                className="block sm:hidden w-full h-auto object-contain mx-auto select-none"
+                className="block sm:hidden w-full h-[400px] object-cover object-center select-none"
               />
             </div>
           </div>
