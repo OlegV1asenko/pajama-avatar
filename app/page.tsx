@@ -352,102 +352,58 @@ export default function PajamaLandingPage() {
             
             {/* Step 1 */}
             <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
-              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
-                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                    13 листопада одягни піжаму на роботу, навчання чи просто вдома
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                    Одягни піжаму та відчуй єдність із дітьми в лікарнях. Нехай цей день стане найзатишнішим днем року для всієї твоєї команди, класу чи родини.
-                  </p>
+              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-start h-full space-y-4">
+                <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
+                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                  </svg>
                 </div>
-                <div className="p-3 rounded-xl bg-white/80 border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
-                  <span>Зручно, затишно і на захист дітей</span>
-                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
+                  13 листопада одягни піжаму на роботу, навчання чи просто вдома
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                  Одягни піжаму та відчуй єдність із дітьми в лікарнях. Нехай цей день стане найзатишнішим днем року для всієї твоєї команди, класу чи родини.
+                </p>
               </div>
             </div>
 
             {/* Step 2 */}
             <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
-              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
-                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                    Поділися світлиною в соцмережах з #ДеньПіжам2026
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                    Зроби яскраве фото чи сторіз у піжамі та опублікуй з хештегом <strong>#ДеньПіжам2026</strong>. Розкажи друзям, чому ти підтримуєш цей день!
-                  </p>
+              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-start h-full space-y-4">
+                <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
+                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                  </svg>
                 </div>
-                <div className="p-3 rounded-xl bg-white/80 border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center justify-between">
-                  <span>#ДеньПіжам2026</span>
-                  <span className="text-slate-400 font-normal">Instagram / Facebook / TikTok</span>
-                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
+                  Поділися світлиною в соцмережах з #ДеньПіжам2026
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                  Зроби яскраве фото чи сторіз у піжамі та опублікуй з хештегом <strong>#ДеньПіжам2026</strong>. Розкажи друзям, чому ти підтримуєш цей день!
+                </p>
               </div>
             </div>
 
             {/* Step 3 */}
             <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
-              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 flex items-center justify-start text-[#DB0007]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#DB0007]">
-                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                    Зроби внесок від 50 грн на Дім Рональда МакДональда та візьми участь у розіграші подарунків
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                    Кожні 50 грн у твоєму внеску наближають відкриття Дому та автоматично дарують шанс виграти чудові брендовані призи!
-                  </p>
+              <div 
+                onClick={handleOpenDonate}
+                className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-start h-full space-y-4 cursor-pointer group"
+              >
+                <div className="w-12 h-12 flex items-center justify-start text-[#DB0007] group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#DB0007]">
+                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                  </svg>
                 </div>
-                <button
-                  onClick={handleOpenDonate}
-                  className="rmhc-btn w-full py-3.5 px-4 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-xs shadow-xs active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
-                >
-                  <Heart className="w-4 h-4 fill-white" />
-                  <span>Задонатити від 50 ₴</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Social Proof Banner */}
-          <div className="mt-12 p-6 rounded-2xl bg-[#FFFDE9] border border-amber-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-200 text-amber-900 flex items-center justify-center shrink-0">
-                <Users className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-[#1F2124] font-raleway">
-                  Тисячі українців уже долучаються цілими родинами та офісами!
-                </h4>
-                <p className="text-xs text-slate-600 font-montserrat">
-                  Переглядай фото учасників в Instagram за хештегом <strong>#ДеньПіжам2026</strong>
+                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway group-hover:text-[#DB0007] transition-colors">
+                  Зроби внесок від 50 грн на Дім Рональда МакДональда та візьми участь у розіграші подарунків
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                  Кожні 50 грн у твоєму внеску наближають відкриття Дому та автоматично дарують шанс виграти чудові брендовані призи!
                 </p>
               </div>
             </div>
-            <a
-              href="https://www.instagram.com/explore/tags/деньпіжам/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2.5 px-4 rounded-lg bg-white text-slate-800 font-bold text-xs border border-slate-300 hover:bg-amber-50 transition-colors inline-flex items-center gap-1.5 shrink-0"
-            >
-              <span>Дивитися фото в Instagram</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+
           </div>
 
         </div>
