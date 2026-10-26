@@ -1,24 +1,26 @@
 "use client";
 
-import React, { useState, useRef } from 'react'
-import { Sparkles, Download, Upload, Share2, Palette, Camera, Check, Wand2, Copy, Heart, RefreshCw } from 'lucide-react'
-import AvatarGenerator from './AvatarGenerator'
+import React, { useState } from 'react'
+import { Sparkles, Download, Share2, Camera, Check, Wand2, Copy, Heart } from 'lucide-react'
 
 interface OfficialVibe {
   id: string
   title: string
   prompt: string
   tag: string
+  bgColor: string
   badgeColor: string
   imageSrc: string
 }
 
+// Exactly matches live Elementor configuration on dimronaldamacdonalda.org.ua
 const OFFICIAL_VIBES: OfficialVibe[] = [
   {
     id: 'work',
     title: 'Робочий',
     prompt: 'Перевдягни мене в стильну піжаму й перенеси у вагон метро, де я їду на роботу з чашкою кави в руках. Навколо пасажири у звичайному одязі, а я в пухнастих капцях почуваюся так, ніби це найзвичайнісінький ранок.',
     tag: 'В метро з кавою',
+    bgColor: '#9CD83E', // Official Green from live elementor-element-16ce217
     badgeColor: '#1B43B2',
     imageSrc: '/events/03_metro.png',
   },
@@ -27,7 +29,8 @@ const OFFICIAL_VIBES: OfficialVibe[] = [
     title: 'Шкільний',
     prompt: 'Перевдягни мене в яскраву піжаму і перенеси в шкільний клас, де всі учні теж у різнокольорових піжамах. Я стою біля дошки з дуже серйозним виглядом і пояснюю математику величезному плюшевому ведмедю у піжамі.',
     tag: 'Урок з ведмедем',
-    badgeColor: '#9CD83E',
+    bgColor: '#8EE7F8', // Official Cyan from live elementor-element-9ef0ee3
+    badgeColor: '#0a7d94',
     imageSrc: '/events/04_dity_klas-768x432.png',
   },
   {
@@ -35,6 +38,7 @@ const OFFICIAL_VIBES: OfficialVibe[] = [
     title: 'Героїчний',
     prompt: 'Перевдягни мене в супергеройську піжаму з плащем і перенеси на дах хмарочоса, де я однією рукою тримаю величезну будівлю, а іншою — чашку кави. Унизу офісні працівники в піжамах захоплено аплодують мені за порятунок світу від понеділка.',
     tag: 'Порятунок світу',
+    bgColor: '#9CD83E', // Official Green from live elementor-element-a884a1f
     badgeColor: '#FF6E0D',
     imageSrc: '/events/07_supermarket-2-768x432.png',
   },
@@ -43,6 +47,7 @@ const OFFICIAL_VIBES: OfficialVibe[] = [
     title: 'Який ти герой книжки?',
     prompt: 'Перетвори мене на піжамну версію одного з найвідоміших героїв світової літератури! Обери популярного книжкового персонажа з урахуванням моїх вподобань — з фентезі, романтики, пригодницької літератури або класики. Перенеси у фантастичний світ цієї книжки.',
     tag: 'Книжковий герой',
+    bgColor: '#FFBC0D', // Official Yellow from live elementor-element-0602ea7
     badgeColor: '#91187D',
     imageSrc: '/events/05_narada-768x432.png',
   },
@@ -51,6 +56,7 @@ const OFFICIAL_VIBES: OfficialVibe[] = [
     title: 'Рожевий',
     prompt: 'Рожева піжама, рожевий єдиноріг, рожевий замок! Я лечу крізь хмаринки на чарівному єдинорозі в рожевій піжамі. Казкова атмосфера, яскраві деталі, ніжне сяйво та максимум wow-ефекту. Вертикальна фентезі-ілюстрація в сучасному напівреалістичному стилі.',
     tag: 'Чарівний єдиноріг',
+    bgColor: '#D0C9FF', // Official Lavender from live elementor-element-d9008bd
     badgeColor: '#CC3366',
     imageSrc: '/events/09_rodyna-768x432.png',
   },
@@ -59,6 +65,7 @@ const OFFICIAL_VIBES: OfficialVibe[] = [
     title: 'Здивуй мене',
     prompt: 'Перевдягни мене в найнезвичайнішу піжаму, яку тільки можна уявити! Експериментуй із кольорами, принтами та кумедними деталями — створи такий несподіваний і веселий образ, щоб я сама себе не впізнала! Збережи мою зовнішність.',
     tag: 'Несподіваний образ',
+    bgColor: '#8EE7F8', // Official Cyan from live elementor-element-85b36b4
     badgeColor: '#FFBC0D',
     imageSrc: '/events/03_metro.png',
   },
@@ -101,7 +108,6 @@ export const PajamaAvatarSection: React.FC = () => {
   const [copiedVibeId, setCopiedVibeId] = useState<string | null>(null)
   const [selectedVibe, setSelectedVibe] = useState<OfficialVibe>(OFFICIAL_VIBES[0])
   const [selectedColor, setSelectedColor] = useState<string>(COLOR_OPTIONS[0].hex)
-  const [userUploadedPhoto, setUserUploadedPhoto] = useState<string | null>(null)
   const [isCopiedHashtag, setIsCopiedHashtag] = useState<boolean>(false)
   const [isDownloading, setIsDownloading] = useState<boolean>(false)
 
@@ -120,19 +126,6 @@ export const PajamaAvatarSection: React.FC = () => {
     navigator.clipboard.writeText('#ДеньПіжам2026 #ДімРональдаМакДональда')
     setIsCopiedHashtag(true)
     setTimeout(() => setIsCopiedHashtag(false), 2500)
-  }
-
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setUserUploadedPhoto(event.target.result as string)
-        }
-      }
-      reader.readAsDataURL(file)
-    }
   }
 
   const handleDownloadStory = () => {
@@ -159,7 +152,7 @@ export const PajamaAvatarSection: React.FC = () => {
         ctx.font = '500 22px Montserrat, sans-serif'
         ctx.fillText('13 листопада — одягни піжаму для підтримки!', 300, 150)
 
-        // Center emoji or image representation
+        // Center emoji
         ctx.font = '110px sans-serif'
         ctx.fillText('🧸✨', 300, 450)
 
@@ -199,27 +192,28 @@ export const PajamaAvatarSection: React.FC = () => {
             </h2>
           </div>
 
-          {/* 4 AI Photos Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6">
+          {/* 4 AI Photos Grid with RMHC Organic Curved Mask */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {GALLERY_PHOTOS.map((photo, idx) => (
               <div 
                 key={idx}
-                className="group relative rounded-2xl overflow-hidden bg-white shadow-sm border border-amber-900/10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative flex flex-col items-center drop-shadow-[0_8px_20px_rgba(0,0,0,0.07)] hover:drop-shadow-[0_16px_28px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="aspect-16/10 w-full overflow-hidden bg-slate-100">
+                {/* Official RMHC Organic Curved Mask on Photo */}
+                <div className="w-full aspect-16/10 rmhc-mask bg-slate-100 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={photo.src}
                     alt={photo.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
-                <div className="p-4 bg-white">
-                  <h3 className="text-sm font-bold text-[#1F2124] leading-snug">
+                <div className="p-3.5 text-center">
+                  <h3 className="text-base font-bold text-[#1F2124] font-raleway leading-snug">
                     {photo.title}
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-600 font-montserrat mt-1">
                     {photo.caption}
                   </p>
                 </div>
@@ -281,72 +275,80 @@ export const PajamaAvatarSection: React.FC = () => {
           </div>
 
           {activeTab === 'inspiration' ? (
-            /* 6 Official Vibe Cards Grid */
+            /* 6 Official Vibe Cards Grid with RMHC Organic Curved Mask & Authentic Palette */
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {OFFICIAL_VIBES.map((vibe) => (
                 <div
                   key={vibe.id}
-                  className="bg-[#FFFDE9] rounded-2xl p-6 border border-amber-900/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5"
+                  className="group relative flex flex-col justify-between drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] hover:drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-1.5"
                 >
-                  <div className="space-y-4">
-                    {/* Header with Title and Badge */}
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] font-raleway">
+                  {/* Organic RMHC Masked Container — Exactly matches original site shape */}
+                  <div
+                    className="rmhc-mask p-8 sm:p-10 flex flex-col justify-between h-full min-h-[340px]"
+                    style={{ backgroundColor: vibe.bgColor }}
+                  >
+                    <div className="space-y-4 text-center">
+                      {/* Vibe Title (Raleway 900) */}
+                      <h3 className="text-2xl sm:text-3xl font-black text-[#1F2124] font-raleway">
                         {vibe.title}
                       </h3>
-                      <span 
-                        className="text-[11px] font-bold px-3 py-1 rounded-full text-white shadow-2xs whitespace-nowrap"
-                        style={{ backgroundColor: vibe.badgeColor }}
+
+                      {/* Tag Badge */}
+                      <div className="flex justify-center">
+                        <span 
+                          className="text-[11px] font-bold px-3 py-1 rounded-full text-white shadow-2xs font-raleway"
+                          style={{ backgroundColor: vibe.badgeColor }}
+                        >
+                          {vibe.tag}
+                        </span>
+                      </div>
+
+                      {/* Vibe Prompt Text (Montserrat 500) */}
+                      <p className="text-sm sm:text-base text-[#1F2124] leading-relaxed font-montserrat font-medium pt-1">
+                        {vibe.prompt}
+                      </p>
+                    </div>
+
+                    {/* Bottom Actions inside the card */}
+                    <div className="pt-6 flex items-center gap-2.5">
+                      <button
+                        onClick={() => handleCopyPrompt(vibe)}
+                        className={`rmhc-btn flex-1 py-3 px-4 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-2xs ${
+                          copiedVibeId === vibe.id
+                            ? 'bg-slate-900 text-white'
+                            : 'bg-white hover:bg-amber-50 text-slate-900 border border-black/10'
+                        }`}
+                        aria-label={`Копіювати промпт для ${vibe.title}`}
                       >
-                        {vibe.tag}
-                      </span>
+                        {copiedVibeId === vibe.id ? (
+                          <>
+                            <Check className="w-4 h-4 text-emerald-500" />
+                            <span>Скопійовано!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4 text-slate-600" />
+                            <span>Скопіювати промпт</span>
+                          </>
+                        )}
+                      </button>
+
+                      <button
+                        onClick={() => handleSelectForGeneration(vibe)}
+                        className="rmhc-btn py-3 px-4 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs shrink-0 font-raleway"
+                        title="Відкрити в AI-студії"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Приміряти</span>
+                      </button>
                     </div>
-
-                    {/* Vibe Prompt Text */}
-                    <div className="p-4 rounded-xl bg-white border border-amber-200/80 text-sm text-slate-700 leading-relaxed font-montserrat shadow-2xs">
-                      <p>{vibe.prompt}</p>
-                    </div>
-                  </div>
-
-                  {/* Card Bottom Actions */}
-                  <div className="pt-2 flex items-center gap-2.5">
-                    <button
-                      onClick={() => handleCopyPrompt(vibe)}
-                      className={`flex-1 py-3 px-4 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-2xs ${
-                        copiedVibeId === vibe.id
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-white hover:bg-amber-50 text-slate-800 border border-slate-300'
-                      }`}
-                      aria-label={`Копіювати промпт для ${vibe.title}`}
-                    >
-                      {copiedVibeId === vibe.id ? (
-                        <>
-                          <Check className="w-4 h-4" />
-                          <span>Скопійовано!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-4 h-4 text-slate-500" />
-                          <span>Скопіювати промпт</span>
-                        </>
-                      )}
-                    </button>
-
-                    <button
-                      onClick={() => handleSelectForGeneration(vibe)}
-                      className="py-3 px-4 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs shrink-0"
-                      title="Відкрити в AI-студії"
-                    >
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Приміряти</span>
-                    </button>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
             /* TAB 2: Interactive Avatar & Story Studio */
-            <div className="max-w-4xl mx-auto bg-[#FFFDE9] rounded-3xl p-6 sm:p-10 border border-amber-900/10 shadow-lg space-y-8">
+            <div className="max-w-4xl mx-auto bg-[#FFFDE9] rmhc-mask p-6 sm:p-12 shadow-xl border border-amber-900/10 space-y-8">
               <div className="text-center space-y-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#DB0007] bg-red-100/80 px-3 py-1 rounded-full">
                   AI Студія Дня Піжам
@@ -413,7 +415,7 @@ export const PajamaAvatarSection: React.FC = () => {
                     </p>
                     <button
                       onClick={() => handleCopyPrompt(selectedVibe)}
-                      className="w-full py-2.5 px-4 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="rmhc-btn w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {copiedVibeId === selectedVibe.id ? (
                         <>
@@ -433,7 +435,7 @@ export const PajamaAvatarSection: React.FC = () => {
                     <button
                       onClick={handleDownloadStory}
                       disabled={isDownloading}
-                      className="flex-1 py-3.5 px-5 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] text-xs sm:text-sm font-bold shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                      className="rmhc-btn flex-1 py-3.5 px-5 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] text-xs sm:text-sm font-bold shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                     >
                       <Download className="w-4 h-4" />
                       <span>{isDownloading ? 'Створюємо Stories...' : 'Завантажити Stories для соцмереж'}</span>
@@ -441,7 +443,7 @@ export const PajamaAvatarSection: React.FC = () => {
 
                     <button
                       onClick={handleCopyHashtag}
-                      className="py-3.5 px-4 rounded-lg bg-white hover:bg-amber-50 text-slate-800 text-xs sm:text-sm font-bold border border-slate-300 transition-colors flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                      className="rmhc-btn py-3.5 px-4 bg-white hover:bg-amber-50 text-slate-800 text-xs sm:text-sm font-bold border border-slate-300 transition-colors flex items-center justify-center gap-2 cursor-pointer shrink-0"
                     >
                       {isCopiedHashtag ? (
                         <Check className="w-4 h-4 text-emerald-600" />
@@ -456,7 +458,7 @@ export const PajamaAvatarSection: React.FC = () => {
                 {/* Right: Live Preview Box */}
                 <div className="flex justify-center">
                   <div 
-                    className="w-full max-w-[280px] aspect-9/16 rounded-3xl p-6 shadow-xl border-4 border-white flex flex-col justify-between text-center relative overflow-hidden transition-all duration-300"
+                    className="w-full max-w-[280px] aspect-9/16 rmhc-mask p-6 shadow-xl flex flex-col justify-between text-center relative overflow-hidden transition-all duration-300"
                     style={{
                       background: `linear-gradient(180deg, #FFFDE9 0%, ${selectedColor} 100%)`
                     }}
@@ -493,7 +495,7 @@ export const PajamaAvatarSection: React.FC = () => {
           )}
 
           {/* Social Hashtag Reminder Box */}
-          <div className="mt-12 p-6 rounded-2xl bg-[#FFFDE9] border border-amber-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-12 p-6 rmhc-mask bg-[#FFFDE9] border border-amber-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#DB0007] text-[#FFFDE9] flex items-center justify-center shrink-0">
                 <Heart className="w-5 h-5 fill-current" />
@@ -510,7 +512,7 @@ export const PajamaAvatarSection: React.FC = () => {
 
             <button
               onClick={handleCopyHashtag}
-              className="py-2.5 px-5 rounded-lg bg-white hover:bg-amber-50 text-slate-800 font-bold text-xs border border-slate-300 transition-colors flex items-center gap-2 cursor-pointer shrink-0"
+              className="rmhc-btn py-2.5 px-5 bg-white hover:bg-amber-50 text-slate-800 font-bold text-xs border border-slate-300 transition-colors flex items-center gap-2 cursor-pointer shrink-0"
             >
               {isCopiedHashtag ? (
                 <>

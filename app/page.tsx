@@ -13,7 +13,6 @@ import {
   ChevronLeft,
   ChevronRight,
   History,
-  Calendar,
 } from 'lucide-react'
 import { PajamaShopModal, ShopItem } from '@/components/PajamaShopModal'
 import { PajamaRulesModal } from '@/components/PajamaRulesModal'
@@ -140,32 +139,35 @@ function HouseImageSlider() {
   }
 
   return (
-    <div className="relative group w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl border border-amber-900/10 bg-slate-900 aspect-4/3 sm:aspect-16/11">
-      {HOUSE_SLIDES.map((slide, idx) => (
-        <div
-          key={idx}
-          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-            idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-          }`}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={slide.src}
-            alt={slide.title}
-            className="w-full h-full object-cover select-none"
-          />
-          {/* Vignette with caption */}
-          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/85 via-black/45 to-transparent text-white">
-            <p className="text-xs sm:text-sm font-bold font-raleway drop-shadow-sm">{slide.title}</p>
-            <p className="text-[11px] sm:text-xs text-white/90 font-montserrat drop-shadow-sm mt-0.5">{slide.caption}</p>
+    <div className="relative group w-full aspect-4/3 sm:aspect-16/11 drop-shadow-xl">
+      {/* Official RMHC Organic Mask for House Slider */}
+      <div className="w-full h-full rmhc-mask bg-slate-900 overflow-hidden relative">
+        {HOUSE_SLIDES.map((slide, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+              idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={slide.src}
+              alt={slide.title}
+              className="w-full h-full object-cover select-none"
+            />
+            {/* Vignette with caption */}
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 bg-gradient-to-t from-black/85 via-black/45 to-transparent text-white">
+              <p className="text-sm sm:text-base font-bold font-raleway drop-shadow-sm">{slide.title}</p>
+              <p className="text-xs sm:text-sm text-white/90 font-montserrat drop-shadow-sm mt-0.5">{slide.caption}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {/* Nav Controls */}
       <button
         onClick={prevSlide}
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
         aria-label="Попереднє фото"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -173,14 +175,14 @@ function HouseImageSlider() {
 
       <button
         onClick={nextSlide}
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all opacity-80 group-hover:opacity-100 active:scale-95 cursor-pointer shadow-md"
         aria-label="Наступне фото"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
       {/* Slide Dots Indicator */}
-      <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-xs">
+      <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-xs">
         {HOUSE_SLIDES.map((_, idx) => (
           <button
             key={idx}
@@ -210,10 +212,10 @@ export default function PajamaLandingPage() {
   return (
     <div className="min-h-screen bg-[#FFFDE9] text-[#1F2124] font-montserrat selection:bg-[#FFBC0D]/40">
       
-      {/* 1. TOP STICKY HEADER — Dim Ronald Official Brand Design */}
+      {/* 1. TOP STICKY HEADER — Exactly matches typography & style from original site */}
       <header className="sticky top-0 z-40 bg-[#FFFDE9]/95 backdrop-blur-md border-b border-amber-900/10 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 sm:h-24 gap-3">
+          <div className="flex items-center justify-between h-20 sm:h-24 gap-4">
             
             {/* Official Ronald McDonald House Ukraine Logo */}
             <div className="flex items-center gap-3 shrink-0">
@@ -227,24 +229,24 @@ export default function PajamaLandingPage() {
               </a>
             </div>
 
-            {/* In-page navigation links */}
-            <nav className="hidden lg:flex items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-700 font-raleway">
-              <a href="#how-to-join" className="hover:text-[#DB0007] transition-colors">Як долучитися</a>
-              <a href="#online-pajama" className="hover:text-[#DB0007] transition-colors">Онлайн-піжама</a>
-              <a href="#merch-shop" className="hover:text-[#DB0007] transition-colors flex items-center gap-1">
+            {/* In-page navigation links — Exact Raleway 800, Normal-case, 18-20px as on original */}
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[18px] xl:text-[19px] font-extrabold text-[#000000] font-raleway tracking-[-0.1px]">
+              <a href="#how-to-join" className="hover:text-[#DB0007] transition-colors py-1">Як долучитися</a>
+              <a href="#online-pajama" className="hover:text-[#DB0007] transition-colors py-1">Онлайн-піжама</a>
+              <a href="#merch-shop" className="hover:text-[#DB0007] transition-colors py-1 flex items-center gap-1.5">
                 <span>Мерч-шоп</span>
-                <span className="text-[10px] bg-[#FFBC0D] text-slate-950 px-1.5 py-0.5 rounded-md font-black">NEW</span>
+                <span className="text-[10px] bg-[#FFBC0D] text-slate-950 px-1.5 py-0.5 rounded-md font-black tracking-normal">NEW</span>
               </a>
-              <a href="#raffle" className="hover:text-[#DB0007] transition-colors">Розіграш</a>
-              <a href="#about-house" className="hover:text-[#DB0007] transition-colors">Про Дім</a>
-              <a href="#history" className="hover:text-[#DB0007] transition-colors">Історія акції</a>
+              <a href="#raffle" className="hover:text-[#DB0007] transition-colors py-1">Розіграш</a>
+              <a href="#about-house" className="hover:text-[#DB0007] transition-colors py-1">Про Дім</a>
+              <a href="#history" className="hover:text-[#DB0007] transition-colors py-1">Історія акції</a>
             </nav>
 
-            {/* Header Right Actions: Cart + Donate */}
-            <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Header Right Actions: Cart + Donate with Official Button Shape */}
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={openCart}
-                className="relative flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-slate-900 border border-slate-300 shadow-2xs active:scale-95 transition-all cursor-pointer"
+                className="relative flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-slate-900 border border-slate-300 shadow-2xs active:scale-95 transition-all cursor-pointer font-raleway"
                 aria-label="Відкрити кошик"
               >
                 <ShoppingBag className="w-4 h-4 text-[#DB0007]" />
@@ -258,7 +260,7 @@ export default function PajamaLandingPage() {
 
               <button
                 onClick={handleOpenDonate}
-                className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] shadow-sm active:scale-95 transition-all cursor-pointer font-raleway"
+                className="rmhc-btn flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-base font-extrabold bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] shadow-sm active:scale-95 transition-all cursor-pointer font-raleway"
               >
                 <Heart className="w-4 h-4 fill-white" />
                 <span>Задонатити</span>
@@ -269,29 +271,31 @@ export default function PajamaLandingPage() {
         </div>
       </header>
 
-      {/* 2. HERO: OFFICIAL KEY VISUAL + MANIFESTO + SKY BLUE CTA */}
-      <section className="relative overflow-hidden pt-3 sm:pt-6 pb-12 sm:pb-16 bg-[#FFFDE9]">
+      {/* 2. HERO: OFFICIAL KEY VISUAL WITH RMHC CURVED MASK + MANIFESTO */}
+      <section className="relative overflow-hidden pt-4 sm:pt-6 pb-12 sm:pb-16 bg-[#FFFDE9]">
         <div className="w-full max-w-[1540px] mx-auto px-2 sm:px-4 lg:px-6 space-y-8">
           
-          {/* Key Visual Banner from Official Event Site */}
-          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-amber-900/10 bg-[#D0C9FF]">
-            {/* Desktop Banner */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/events/denPizham_Web_UA_1920x1080.png"
-              alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
-              className="hidden sm:block w-full h-auto object-contain mx-auto select-none"
-            />
-            {/* Mobile Banner */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/events/denPizham_Mob_UA_630x1080.png"
-              alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
-              className="block sm:hidden w-full h-auto object-contain mx-auto select-none"
-            />
+          {/* Key Visual Banner with Official RMHC Organic Curved Mask */}
+          <div className="relative w-full drop-shadow-[0_15px_30px_rgba(0,0,0,0.06)]">
+            <div className="rmhc-mask bg-[#D0C9FF] overflow-hidden">
+              {/* Desktop Banner */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/events/denPizham_Web_UA_1920x1080.png"
+                alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
+                className="hidden sm:block w-full h-auto object-contain mx-auto select-none"
+              />
+              {/* Mobile Banner */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/events/denPizham_Mob_UA_630x1080.png"
+                alt="13 листопада — Всеукраїнський День Піжам 2026. Дім Рональда МакДональда Україна"
+                className="block sm:hidden w-full h-auto object-contain mx-auto select-none"
+              />
+            </div>
           </div>
 
-          {/* Official Manifesto Text Block with Official Sky Blue Donate Button */}
+          {/* Official Manifesto Text Block with Official Buttons */}
           <div className="max-w-4xl mx-auto text-center space-y-6 px-4">
             
             <p className="text-base sm:text-xl text-slate-800 leading-relaxed font-normal">
@@ -303,10 +307,10 @@ export default function PajamaLandingPage() {
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
-              {/* Sky Blue CTA Button as on official site */}
+              {/* Sky Blue CTA Button */}
               <button
                 onClick={handleOpenDonate}
-                className="w-full sm:w-auto py-4 px-8 rounded-lg bg-[#5BC0DE] hover:bg-[#31b0d5] text-white font-bold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+                className="rmhc-btn w-full sm:w-auto py-4 px-8 bg-[#5BC0DE] hover:bg-[#31b0d5] text-white font-extrabold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
               >
                 <Heart className="w-5 h-5 fill-white" />
                 <span>Задонатити</span>
@@ -314,7 +318,7 @@ export default function PajamaLandingPage() {
 
               <a
                 href="#online-pajama"
-                className="w-full sm:w-auto py-4 px-7 rounded-lg bg-[#9CD83E] hover:bg-[#86bf2e] text-[#1F2124] font-bold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+                className="rmhc-btn w-full sm:w-auto py-4 px-7 bg-[#9CD83E] hover:bg-[#86bf2e] text-[#1F2124] font-extrabold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
               >
                 <Sparkles className="w-5 h-5" />
                 <span>Створити онлайн-піжаму</span>
@@ -322,7 +326,7 @@ export default function PajamaLandingPage() {
 
               <a
                 href="#merch-shop"
-                className="w-full sm:w-auto py-4 px-7 rounded-lg bg-[#FFBC0D] hover:bg-[#e5a80b] text-slate-950 font-bold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+                className="rmhc-btn w-full sm:w-auto py-4 px-7 bg-[#FFBC0D] hover:bg-[#e5a80b] text-slate-950 font-extrabold text-base sm:text-lg shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>Благодійний магазин</span>
@@ -334,7 +338,7 @@ export default function PajamaLandingPage() {
         </div>
       </section>
 
-      {/* 3. HOW TO JOIN (3 STEPS WITH AUTHENTIC RMHC HEARTS) */}
+      {/* 3. HOW TO JOIN (3 STEPS WITH RMHC CURVED CARDS) */}
       <section id="how-to-join" className="py-16 sm:py-24 bg-white border-y border-amber-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -347,69 +351,75 @@ export default function PajamaLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
             {/* Step 1 */}
-            <div className="bg-[#FFFDE9] rounded-2xl p-6 sm:p-8 border border-amber-900/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5">
-              <div className="space-y-4">
-                <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
-                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                  </svg>
+            <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
+              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
+                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
+                    13 листопада одягни піжаму на роботу, навчання чи просто вдома
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                    Одягни піжаму та відчуй єдність із дітьми в лікарнях. Нехай цей день стане найзатишнішим днем року для всієї твоєї команди, класу чи родини.
+                  </p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                  13 листопада одягни піжаму на роботу, навчання чи просто вдома
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                  Одягни піжаму та відчуй єдність із дітьми в лікарнях. Нехай цей день стане найзатишнішим днем року для всієї твоєї команди, класу чи родини.
-                </p>
-              </div>
-              <div className="p-3 rounded-xl bg-white border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>Зручно, затишно і на захист дітей</span>
+                <div className="p-3 rounded-xl bg-white/80 border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+                  <span>Зручно, затишно і на захист дітей</span>
+                </div>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="bg-[#FFFDE9] rounded-2xl p-6 sm:p-8 border border-amber-900/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5">
-              <div className="space-y-4">
-                <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
-                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                  </svg>
+            <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
+              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 flex items-center justify-start text-[#1F2124]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#1F2124]">
+                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
+                    Поділися світлиною в соцмережах з #ДеньПіжам2026
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                    Зроби яскраве фото чи сторіз у піжамі та опублікуй з хештегом <strong>#ДеньПіжам2026</strong>. Розкажи друзям, чому ти підтримуєш цей день!
+                  </p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                  Поділися світлиною в соцмережах з #ДеньПіжам2026
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                  Зроби яскраве фото чи сторіз у піжамі та опублікуй з хештегом <strong>#ДеньПіжам2026</strong>. Розкажи друзям, чому ти підтримуєш цей день!
-                </p>
-              </div>
-              <div className="p-3 rounded-xl bg-white border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center justify-between">
-                <span>#ДеньПіжам2026</span>
-                <span className="text-slate-400 font-normal">Instagram / Facebook / TikTok</span>
+                <div className="p-3 rounded-xl bg-white/80 border border-amber-200/80 text-xs font-bold text-slate-800 flex items-center justify-between">
+                  <span>#ДеньПіжам2026</span>
+                  <span className="text-slate-400 font-normal">Instagram / Facebook / TikTok</span>
+                </div>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="bg-[#FFFDE9] rounded-2xl p-6 sm:p-8 border border-amber-900/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5">
-              <div className="space-y-4">
-                <div className="w-12 h-12 flex items-center justify-start text-[#DB0007]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#DB0007]">
-                    <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
-                  </svg>
+            <div className="drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
+              <div className="rmhc-mask bg-[#FFFDE9] p-8 sm:p-10 flex flex-col justify-between h-full space-y-5">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 flex items-center justify-start text-[#DB0007]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.56 35.05" className="w-10 h-10 fill-[#DB0007]">
+                      <path d="M20.82,34.79c-.4.29-.93.33-1.38.13C15.91,33.29.66,25.67.03,14.86-.69,2.63,12.74,4.07,18.97,9.35c0,0,.99,1,1.68,1.2.68.19,1.59-1.78,4.32-4.08,2.49-2.1,13.19-10.07,16.07-4.56s-6.2,22.96-20.22,32.88Z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
+                    Зроби внесок від 50 грн на Дім Рональда МакДональда та візьми участь у розіграші подарунків
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
+                    Кожні 50 грн у твоєму внеску наближають відкриття Дому та автоматично дарують шанс виграти чудові брендовані призи!
+                  </p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-[#1F2124] leading-snug font-raleway">
-                  Зроби внесок від 50 грн на Дім Рональда МакДональда та візьми участь у розіграші подарунків
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-montserrat">
-                  Кожні 50 грн у твоєму внеску наближають відкриття Дому та автоматично дарують шанс виграти чудові брендовані призи!
-                </p>
+                <button
+                  onClick={handleOpenDonate}
+                  className="rmhc-btn w-full py-3.5 px-4 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-xs shadow-xs active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+                >
+                  <Heart className="w-4 h-4 fill-white" />
+                  <span>Задонатити від 50 ₴</span>
+                </button>
               </div>
-              <button
-                onClick={handleOpenDonate}
-                className="w-full py-3.5 px-4 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-xs shadow-xs active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
-              >
-                <Heart className="w-4 h-4 fill-white" />
-                <span>Задонатити від 50 ₴</span>
-              </button>
             </div>
 
           </div>
@@ -443,7 +453,7 @@ export default function PajamaLandingPage() {
         </div>
       </section>
 
-      {/* 4. ONLINE PAJAMA STUDIO & 6 INSPIRATION VIBES */}
+      {/* 4. ONLINE PAJAMA STUDIO & 6 INSPIRATION VIBES (WITH CURVED MASKS) */}
       <PajamaAvatarSection />
 
       {/* 5. CHARITY MERCH SHOP */}
@@ -467,16 +477,16 @@ export default function PajamaLandingPage() {
                 className="bg-[#FFFDE9] hover:bg-white rounded-2xl p-5 sm:p-6 border border-amber-900/10 hover:border-amber-400 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
               >
                 <div>
-                  {/* Product Visual */}
+                  {/* Product Visual Container with RMHC Masked Soft Background */}
                   <div 
-                    className="w-full aspect-square rounded-xl p-4 sm:p-6 flex items-center justify-center relative overflow-hidden mb-4 shadow-2xs border border-amber-100/80 transition-all group-hover:shadow-sm"
+                    className="w-full aspect-square rmhc-mask p-4 sm:p-6 flex items-center justify-center relative overflow-hidden mb-4 shadow-2xs transition-all group-hover:scale-102"
                     style={{ backgroundColor: item.colorTheme }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.imageSrc}
                       alt={item.name}
-                      className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain drop-shadow-sm group-hover:scale-108 transition-transform duration-300"
                     />
                   </div>
 
@@ -505,7 +515,7 @@ export default function PajamaLandingPage() {
                         addToCart(item, null, undefined, 1)
                       }
                     }}
-                    className="py-2.5 px-4 sm:px-5 rounded-lg bg-slate-900 hover:bg-[#DB0007] text-white text-xs sm:text-sm font-bold transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-2 shrink-0 font-raleway"
+                    className="rmhc-btn py-2.5 px-4 sm:px-5 bg-slate-900 hover:bg-[#DB0007] text-white text-xs sm:text-sm font-bold transition-all shadow-xs active:scale-95 cursor-pointer flex items-center gap-2 shrink-0 font-raleway"
                   >
                     <ShoppingBag className="w-4 h-4" />
                     <span>В кошик</span>
@@ -532,7 +542,7 @@ export default function PajamaLandingPage() {
             >
               <defs>
                 <path 
-                  id="raffle-brand-shape-v2" 
+                  id="raffle-brand-shape-v3" 
                   d="
                     M 50,22 
                     C 20,25 10,50 10,80 
@@ -549,7 +559,7 @@ export default function PajamaLandingPage() {
                     Z" 
                 />
               </defs>
-              <use href="#raffle-brand-shape-v2" fill="#D0C9FF" />
+              <use href="#raffle-brand-shape-v3" fill="#D0C9FF" />
 
               {/* Signature RMHC Dynamic Organic Wave */}
               <path 
@@ -589,7 +599,7 @@ export default function PajamaLandingPage() {
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     <button
                       onClick={handleOpenDonate}
-                      className="py-3.5 px-6 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-sm sm:text-base shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2 font-raleway"
+                      className="rmhc-btn py-3.5 px-6 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-sm sm:text-base shadow-md active:scale-98 transition-all cursor-pointer flex items-center gap-2 font-raleway"
                     >
                       <Heart className="w-5 h-5 fill-white" />
                       <span>Зробити внесок від 50 ₴</span>
@@ -597,7 +607,7 @@ export default function PajamaLandingPage() {
 
                     <button
                       onClick={() => setIsRulesOpen(true)}
-                      className="py-3.5 px-6 rounded-lg bg-[#69727D] hover:bg-[#1F2124] text-white font-bold text-sm sm:text-base shadow-2xs transition-colors cursor-pointer flex items-center gap-2 font-raleway"
+                      className="rmhc-btn py-3.5 px-6 bg-[#69727D] hover:bg-[#1F2124] text-white font-bold text-sm sm:text-base shadow-2xs transition-colors cursor-pointer flex items-center gap-2 font-raleway"
                     >
                       <HelpCircle className="w-4 h-4 text-white" />
                       <span>Умови розіграшу</span>
@@ -635,7 +645,7 @@ export default function PajamaLandingPage() {
         </div>
       </section>
 
-      {/* 7. ABOUT THE HOUSE — 2-COLUMN LAYOUT WITH HOUSE SLIDER */}
+      {/* 7. ABOUT THE HOUSE — 2-COLUMN LAYOUT WITH MASKED HOUSE SLIDER */}
       <section id="about-house" className="py-16 sm:py-24 bg-[#FFFDE9] border-t border-amber-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -671,7 +681,7 @@ export default function PajamaLandingPage() {
               <div className="pt-2">
                 <button
                   onClick={handleOpenDonate}
-                  className="py-4 px-8 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-base shadow-md active:scale-98 transition-all flex items-center gap-2 cursor-pointer font-raleway"
+                  className="rmhc-btn py-4 px-8 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-base shadow-md active:scale-98 transition-all flex items-center gap-2 cursor-pointer font-raleway"
                 >
                   <Heart className="w-5 h-5 fill-white" />
                   <span>Зробити внесок</span>
@@ -688,16 +698,18 @@ export default function PajamaLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left: Official Photo img-4.png */}
+            {/* Left: Official Photo img-4.png with RMHC Organic Curved Mask */}
             <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-amber-900/10 bg-slate-100 group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/events/img-4.png"
-                  alt="«День піжам» — найпопулярніша акція БО Дім Рональда Макдональда Україна"
-                  className="w-full h-auto object-cover group-hover:scale-103 transition-transform duration-500"
-                  loading="lazy"
-                />
+              <div className="drop-shadow-xl group">
+                <div className="rmhc-mask bg-slate-100 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/events/img-4.png"
+                    alt="«День піжам» — найпопулярніша акція БО Дім Рональда Макдональда Україна"
+                    className="w-full h-auto object-cover group-hover:scale-104 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
 
@@ -755,21 +767,21 @@ export default function PajamaLandingPage() {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
             <button
               onClick={handleOpenDonate}
-              className="w-full sm:w-auto py-4 px-8 rounded-lg bg-[#5BC0DE] hover:bg-[#31b0d5] text-white font-bold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+              className="rmhc-btn w-full sm:w-auto py-4 px-8 bg-[#5BC0DE] hover:bg-[#31b0d5] text-white font-extrabold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
             >
               <Heart className="w-5 h-5 fill-white" />
               <span>Задонатити</span>
             </button>
             <button
               onClick={handleOpenDonate}
-              className="w-full sm:w-auto py-4 px-8 rounded-lg bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-bold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+              className="rmhc-btn w-full sm:w-auto py-4 px-8 bg-[#DB0007] hover:bg-[#91187D] text-[#FFFDE9] font-extrabold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
             >
               <Heart className="w-5 h-5 fill-white" />
               <span>Зробити внесок від 50 ₴</span>
             </button>
             <a
               href="#merch-shop"
-              className="w-full sm:w-auto py-4 px-7 rounded-lg bg-[#FFBC0D] hover:bg-[#e5a80b] text-slate-950 font-bold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
+              className="rmhc-btn w-full sm:w-auto py-4 px-7 bg-[#FFBC0D] hover:bg-[#e5a80b] text-slate-950 font-extrabold text-base shadow-md active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer font-raleway"
             >
               <ShoppingBag className="w-5 h-5" />
               <span>Благодійний магазин</span>
@@ -791,7 +803,7 @@ export default function PajamaLandingPage() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-300 font-raleway">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-extrabold text-slate-300 font-raleway">
               <a href="#how-to-join" className="hover:text-[#FFBC0D] transition-colors">Як долучитись</a>
               <span>•</span>
               <a href="#online-pajama" className="hover:text-[#FFBC0D] transition-colors">Онлайн-піжама</a>

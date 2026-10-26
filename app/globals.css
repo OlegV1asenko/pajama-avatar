@@ -12,6 +12,7 @@
   --color-rmhc-yellow: #FFBC0D;
   --color-rmhc-purple: #D0C9FF;
   --color-rmhc-green: #9CD83E;
+  --color-rmhc-cyan: #8EE7F8;
   --color-rmhc-dark: #1F2124;
 }
 
@@ -29,4 +30,28 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-raleway), "Raleway", sans-serif;
+}
+
+/* Official RMHC Organic Curved Mask for Images & Containers */
+.rmhc-mask {
+  -webkit-mask-image: url('/RMHC_Photo_Mask_Float_Flex.svg');
+  mask-image: url('/RMHC_Photo_Mask_Float_Flex.svg');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+}
+
+/* Official RMHC Button Contour Shape */
+.rmhc-btn {
+  -webkit-mask-image: url('/Button-Shape.svg');
+  mask-image: url('/Button-Shape.svg');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
